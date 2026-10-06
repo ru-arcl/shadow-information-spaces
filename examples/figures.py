@@ -1,4 +1,4 @@
-"""README figures for the office map: snapshot, shadow sequence and bipartite I-state.
+"""README figures for the office map: snapshot, shadow sequence and bipartite I-state (plus ``events.png``).
 
 All three describe one window of ticks ``(t0, t1]`` of an office-map run:
 
@@ -8,6 +8,9 @@ All three describe one window of ticks ``(t0, t1]`` of an office-map run:
 * ``shadow_sequence.png`` -- the shadow sequence of the window in the style
   of T-RO Figs. 5 and 7 (appear, split, merge, disappear and FOV arrows);
 * ``bipartite.png`` -- the bipartite I-state of the window (Fig. 11(c)).
+
+It also writes ``events.png``, the appear / disappear / split / merge illustrations on map 12
+(:mod:`event_illustrations`).
 
 The snapshot shows the bounds of the filter over the whole run.  The
 bipartite I-state is that of a window filter which starts from the
@@ -36,6 +39,7 @@ from matplotlib.lines import Line2D  # noqa: E402
 HERE = Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE), str(HERE.parent)]
 
+import event_illustrations  # noqa: E402
 from office_grid import expected_counts, run  # noqa: E402
 from shadowinfo import (Appear, CombinatorialFilter, Disappear, Enter, Exit, Merge, Pseudo,  # noqa: E402
                         Split, event_labels)
@@ -306,7 +310,9 @@ def main() -> None:
     ap.add_argument("--t1", type=int, default=165)
     args = ap.parse_args()
     r = run(args.targets, args.seed, max(196, args.t1))
-    print("saved:", *save_all(r, Path(args.out), args.t1, t0=args.t0), sep="\n  ")
+    paths = save_all(r, Path(args.out), args.t1, t0=args.t0)
+    paths.append(event_illustrations.save(Path(args.out) / "events.png")[0])
+    print("saved:", *paths, sep="\n  ")
 
 
 if __name__ == "__main__":

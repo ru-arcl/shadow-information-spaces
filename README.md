@@ -3,11 +3,11 @@
 Track how many hidden targets could be in each part of an environment that a
 robot cannot currently see, using only the order of a few combinatorial events.
 
-[![Interactive demo: a robot follows the original path on map 12 (T-RO Fig. 11); shadows are labelled with count bounds](docs/assets/demo_desktop.png)](https://ru-arcl.github.io/shadow-information-spaces/)
+[![Interactive demo on map 12 (T-RO Fig. 11): as the robot follows its path, shadows appear, split, merge and disappear, and the bounds on the number of targets in each shadow tighten](docs/assets/demo.gif)](https://ru-arcl.github.io/shadow-information-spaces/)
 
-**Demo:** open `docs/index.html` in a browser (no build step, no network), or
-serve it with `python -m http.server -d docs`. When GitHub Pages is enabled it is
-at <https://ru-arcl.github.io/shadow-information-spaces/>.
+**[Live demo](https://ru-arcl.github.io/shadow-information-spaces/)**: pick a map and a
+path (or draw one) and watch the bounds track the hidden targets. It also runs offline
+from `docs/index.html` (no build step, no network).
 
 ## The idea
 
@@ -18,6 +18,8 @@ and unpredictably moving targets **enter or exit** shadows across the edge of th
 field of view (FOV events). We showed that for tracking hidden targets this ordered
 stream of critical events is all that matters; the compressed record is a *shadow
 information space*, and filters over it are *combinatorial filters*.
+
+![Appear, disappear, split and merge: four before/after pairs on map 12, where the robot crosses a dashed critical line (an inflection ray or a bitangent)](docs/assets/events.png)
 
 If targets move **nondeterministically**, the possible counts per shadow form an
 integer program with a totally unimodular constraint matrix. The filter keeps a

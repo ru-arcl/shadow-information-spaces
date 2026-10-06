@@ -79,8 +79,18 @@ def test_counting_and_pursuit():
 def test_readme_figures(tmp_path):
     pytest.importorskip("matplotlib")
     run("figures.py", "--out", str(tmp_path))
-    assert sorted(p.name for p in tmp_path.iterdir()) == ["bipartite.png", "office_snapshot.png",
+    assert sorted(p.name for p in tmp_path.iterdir()) == ["bipartite.png", "events.png", "office_snapshot.png",
                                                           "shadow_sequence.png"]
+
+
+def test_event_illustrations(tmp_path):
+    pytest.importorskip("matplotlib")
+    out = run("event_illustrations.py", "--out", str(tmp_path / "events.png"))
+    assert "appear at critical point 2, disappear at critical point 15, split at critical point 4, " \
+           "merge at critical point 21" in out
+    assert (tmp_path / "events.png").stat().st_size > 50_000
+    listing = run("event_illustrations.py", "--list")
+    assert "Split(s=1, a=6, b=7)" in listing and "Merge(a=11, b=5, s=16)" in listing
 
 
 def row(out: str, name: str) -> list:
