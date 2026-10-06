@@ -1,0 +1,981 @@
+{
+ "_doc": "Robot paths of the original Java implementation (geometry/pe/ui/ProjectPanel*.java) and paths digitised from the paper figures. Labels follow docs/notes/original_java.md section 3; digitised paths keep the harness names (fig_*). See docs/notes/original_maps.md.",
+ "frame": "All coordinates are in the .dat frame of source/polygons/N.dat ([0,1000]^2). The Java app draws screen_y = 1000 - y (Polygon.draw / Path.draw), i.e. the .dat frame is y-up and the Java window shows it y-up. orientation \"ydown\" means the paper figure shows the .dat with y increasing downwards (vertically mirrored relative to the Java window); \"yup\" means the figure equals the Java window.",
+ "provenance": {
+  "repository": "https://github.com/arc-l/shadow-information-space",
+  "commit": "1a52234199b03749ca9eae6630f7e2f02494630d",
+  "polygons": "source/polygons/{1..14}.dat, copied byte-identically",
+  "license": "BSD-3-Clause, Copyright (c) 2015-, Rutgers Algorithmic Robotics and Control Group (https://arc.cs.rutgers.edu); same license as this repository",
+  "harness": "tools/java_reference (paths.tsv lists the same paths)"
+ },
+ "panels": {
+  "ProjectPanel": "P12",
+  "ProjectPanel2": "P1",
+  "ProjectPanel3": "P5",
+  "ProjectPanel4": "P14a",
+  "ProjectPanel5": "P14b"
+ },
+ "polygons": {
+  "1": {
+   "file": "1.dat",
+   "sha256": "b8c15b67998f616b8702f99e2eeffab964487884c89203f8e1e79977ff9a6edd",
+   "n_vertices": 31
+  },
+  "2": {
+   "file": "2.dat",
+   "sha256": "cfb41f9769f034d70b2984cf7082ea5051788f6380adc1b88a2859be3ec90343",
+   "n_vertices": 68
+  },
+  "3": {
+   "file": "3.dat",
+   "sha256": "03e5e5f944e6a0d84c841d3b1a28ffb19fb3bbdc3e65bec1ccfc3a14b134cc8b",
+   "n_vertices": 18
+  },
+  "4": {
+   "file": "4.dat",
+   "sha256": "b768a448ae40894afbbdfc147a9314f4ee4ca92de2aa6f1b7059fcdcb5bcb640",
+   "n_vertices": 124
+  },
+  "5": {
+   "file": "5.dat",
+   "sha256": "676cade1aa75f826f9c956594465afd0944e2f818db677b9916d9f195eaf6915",
+   "n_vertices": 253
+  },
+  "6": {
+   "file": "6.dat",
+   "sha256": "d30ce776b5ef4c773d6e6b1df0c1a2fa3e69d2519e0a451ab23b439216b6d615",
+   "n_vertices": 18
+  },
+  "7": {
+   "file": "7.dat",
+   "sha256": "c0eeded131bd9bbe9e8134bad8d8be5283a4a5cc8c6967af96790dfe916cd1d5",
+   "n_vertices": 22
+  },
+  "8": {
+   "file": "8.dat",
+   "sha256": "743906ce266a95efb8603c4c92be75c771b515421c5112bac380b11ad6f04ee9",
+   "n_vertices": 30
+  },
+  "9": {
+   "file": "9.dat",
+   "sha256": "504c80d9d8e16375d070db3f1936d816f1e4942f31e381a1a295072690d44fa8",
+   "n_vertices": 33
+  },
+  "10": {
+   "file": "10.dat",
+   "sha256": "9e858ee310ccbdcec6365b2fad8e40b770451266093887d7584be9d751a00a3e",
+   "n_vertices": 54
+  },
+  "11": {
+   "file": "11.dat",
+   "sha256": "99e3507987c39755c0ece33ec418198cf50744a927ca3d04a43f0ceef69fcc3f",
+   "n_vertices": 45
+  },
+  "12": {
+   "file": "12.dat",
+   "sha256": "3f5412e767119021994c53827a7f7fa6344f451f6c6c6c9a43ef278c7a8f6ef9",
+   "n_vertices": 34,
+   "figure": "T-RO Fig. 11(a) = ICRA'08 Fig. 2(a), 3(a)-(d) (drawn y-down; the paper moves the wall at vertices 21-22 from x=285.71 to x~250)"
+  },
+  "13": {
+   "file": "13.dat",
+   "sha256": "4a683c6dce7f4a8649b3b2c4485d805e5f3493fb76d7bb07ce2804f8adf98e01",
+   "n_vertices": 140,
+   "figure": "T-RO Fig. 15(a) = ICRA'08 Fig. 8(a) (drawn y-up)"
+  },
+  "14": {
+   "file": "14.dat",
+   "sha256": "a851890a2aae346edba65e09eca251019e609b3fda9fc4a6876aa6350d4f1f38",
+   "n_vertices": 267,
+   "figure": "T-RO Fig. 15(b) = ICRA'08 Fig. 8(b) (drawn y-down)"
+  }
+ },
+ "paths": {
+  "P12": {
+   "polygon": 12,
+   "waypoints": [[90.0, 450.0], [580.0, 450.0], [580.0, 840.0], [520.0, 840.0]],
+   "kind": "code",
+   "status": "active",
+   "source": [
+    "geometry/pe/ui/ProjectPanel.java"
+   ],
+   "panels": [
+    "ProjectPanel"
+   ],
+   "figure": "ICRA'08 Fig. 2(a)/Fig. 4 (event labels 1-19); T-RO Fig. 11(b) after swapping labels 6<->7 and treating s5 as initial. The drawn path of ICRA'08 Fig. 2(a)/3(a) and T-RO Fig. 11(a) is a hand-drawn variant of this route (see the fig_* entries).",
+   "panel_runs": "getGaps + SingleTypeAgentOracle(100) + equations + bipartite graph + bounds",
+   "provenance": {
+    "origin": "waypoints copied literally from the Java source (y-up .dat frame)",
+    "harness_source_column": "ProjectPanel.java, active ('polygon 12'); runs getGaps+oracle(100)+equations+BG+bounds",
+    "inside_polygon_check": {
+     "ok": true,
+     "violations": [],
+     "min_vertex_clearance_units": 20.0
+    }
+   },
+   "harness": {
+    "name": "PP",
+    "n_targets": 100,
+    "fixture": "tests/fixtures/java/12_PP.json",
+    "java_get_gaps_ok": true
+   }
+  },
+  "P1": {
+   "polygon": 1,
+   "waypoints": [[930.0, 886.0], [913.0, 700.0], [746.0, 583.0], [75.0, 565.0], [136.0, 215.0], [375.0, 69.0], [788.0, 27.0], [905.0, 95.0]],
+   "kind": "code",
+   "status": "active",
+   "source": [
+    "geometry/pe/ui/ProjectPanel2.java"
+   ],
+   "panels": [
+    "ProjectPanel2"
+   ],
+   "figure": null,
+   "panel_runs": "getGaps + NEVER_SEE_EVADER",
+   "notes": "Also present, commented out, in ProjectPanel3.",
+   "provenance": {
+    "origin": "waypoints copied literally from the Java source (y-up .dat frame)",
+    "harness_source_column": "ProjectPanel2.java, active (polygon 1); runs getGaps+NSE",
+    "inside_polygon_check": {
+     "ok": true,
+     "violations": [],
+     "min_vertex_clearance_units": 16.63
+    }
+   },
+   "harness": {
+    "name": "PP2",
+    "n_targets": 100,
+    "fixture": "tests/fixtures/java/1_PP2.json",
+    "java_get_gaps_ok": true
+   }
+  },
+  "P5": {
+   "polygon": 5,
+   "waypoints": [[946.0, 501.0], [723.0, 591.0], [670.0, 511.0], [596.0, 643.0], [606.0, 930.0], [580.0, 919.0], [588.0, 672.0], [250.0, 611.0], [266.0, 535.0], [115.0, 433.0], [93.0, 358.0], [245.0, 286.0], [98.0, 288.0], [93.0, 123.0]],
+   "kind": "code",
+   "status": "active",
+   "source": [
+    "geometry/pe/ui/ProjectPanel3.java"
+   ],
+   "panels": [
+    "ProjectPanel3"
+   ],
+   "figure": null,
+   "panel_runs": "getGaps + NEVER_SEE_EVADER",
+   "notes": "The source marks waypoint (245,286) with the comment '// The one'.",
+   "provenance": {
+    "origin": "waypoints copied literally from the Java source (y-up .dat frame)",
+    "harness_source_column": "ProjectPanel3.java, active ('polygon 5'); runs getGaps+NSE",
+    "inside_polygon_check": {
+     "ok": true,
+     "violations": [],
+     "min_vertex_clearance_units": 8.82
+    }
+   },
+   "harness": {
+    "name": "PP3",
+    "n_targets": 100,
+    "fixture": "tests/fixtures/java/5_PP3.json",
+    "java_get_gaps_ok": true
+   }
+  },
+  "P14a": {
+   "polygon": 14,
+   "waypoints": [[89.29, 625.0], [178.57, 517.86], [330.36, 446.43], [375.0, 357.14], [178.57, 321.43], [107.14, 241.07], [133.93, 142.86], [196.43, 285.71], [392.86, 321.43], [455.36, 151.79], [598.21, 133.93], [660.71, 187.5], [616.07, 196.43], [526.79, 169.64], [455.36, 383.93], [580.36, 366.07], [544.64, 437.5], [383.93, 437.5], [437.5, 625.0], [633.93, 714.29], [678.57, 687.5]],
+   "kind": "code",
+   "status": "active",
+   "source": [
+    "geometry/pe/ui/ProjectPanel4.java"
+   ],
+   "panels": [
+    "ProjectPanel4"
+   ],
+   "figure": "Vertices 0-19 are the path drawn in T-RO Fig. 15(b) / ICRA'08 Fig. 8(b); the last vertex is not drawn.",
+   "panel_runs": "drawing only (general inflections + bitangents); the panel never calls getGaps",
+   "notes": "Java getGaps throws a NullPointerException on this path (collapsePhysicalGaps, bitangent-merge branch, critical point 654).",
+   "provenance": {
+    "origin": "waypoints copied literally from the Java source (y-up .dat frame)",
+    "harness_source_column": "ProjectPanel4.java, active (drawing only; panel never calls getGaps)",
+    "inside_polygon_check": {
+     "ok": true,
+     "violations": [],
+     "min_vertex_clearance_units": 19.96
+    }
+   },
+   "harness": {
+    "name": "PP4",
+    "n_targets": 1000000,
+    "fixture": "tests/fixtures/java/14_PP4.json",
+    "java_get_gaps_ok": false
+   }
+  },
+  "P14b": {
+   "polygon": 14,
+   "waypoints": [[89.29, 625.0], [178.57, 517.86], [330.36, 446.43], [375.0, 357.14], [178.57, 321.43], [107.14, 241.07], [133.93, 142.86], [196.43, 285.71], [392.86, 321.43], [455.36, 151.79], [598.21, 133.93], [660.71, 187.5], [616.07, 196.43], [526.79, 169.64], [455.36, 383.93], [580.36, 366.07], [544.64, 437.5], [383.93, 437.5], [437.5, 625.0], [633.93, 712.29], [688.57, 657.5]],
+   "kind": "code",
+   "status": "active",
+   "source": [
+    "geometry/pe/ui/ProjectPanel5.java"
+   ],
+   "panels": [
+    "ProjectPanel5"
+   ],
+   "figure": "T-RO Fig. 15(b) = ICRA'08 Fig. 8(b): 385 component events, 491 shadow labels, 12 bounded final shadows, 339 bipartite edges.",
+   "panel_runs": "getGaps + SingleTypeAgentOracle(1000000) + equations + bipartite graph + bounds",
+   "notes": "Same as P14a except the last two waypoints.",
+   "provenance": {
+    "origin": "waypoints copied literally from the Java source (y-up .dat frame)",
+    "harness_source_column": "ProjectPanel5.java, active; runs getGaps+oracle(1000000)+equations+BG+bounds",
+    "inside_polygon_check": {
+     "ok": true,
+     "violations": [],
+     "min_vertex_clearance_units": 19.96
+    }
+   },
+   "harness": {
+    "name": "PP5",
+    "n_targets": 1000000,
+    "fixture": "tests/fixtures/java/14_PP5.json",
+    "java_get_gaps_ok": true
+   }
+  },
+  "P1s": {
+   "polygon": 1,
+   "waypoints": [[886.0, 281.0], [886.0, 48.0], [556.0, 36.0]],
+   "kind": "code",
+   "status": "commented",
+   "source": [
+    "geometry/pe/ui/ProjectPanel.java",
+    "geometry/pe/ui/ProjectPanel2.java",
+    "geometry/pe/ui/ProjectPanel3.java"
+   ],
+   "panels": [
+    "ProjectPanel",
+    "ProjectPanel2",
+    "ProjectPanel3"
+   ],
+   "figure": null,
+   "notes": "Commented block labelled '// polygon 1'.",
+   "provenance": {
+    "origin": "waypoints copied literally from the Java source (y-up .dat frame)",
+    "harness_source_column": "commented '// polygon 1' block in ProjectPanel/2/3",
+    "inside_polygon_check": {
+     "ok": true,
+     "violations": [],
+     "min_vertex_clearance_units": 18.46
+    }
+   },
+   "harness": {
+    "name": "c_stub",
+    "n_targets": 100,
+    "fixture": "tests/fixtures/java/1_c_stub.json",
+    "java_get_gaps_ok": true
+   }
+  },
+  "P13": {
+   "polygon": 13,
+   "waypoints": [[195.0, 620.0], [195.0, 510.0], [620.0, 510.0], [620.0, 660.0], [760.0, 660.0], [760.0, 470.0], [590.0, 470.0], [590.0, 440.0], [460.0, 440.0]],
+   "kind": "code",
+   "status": "commented",
+   "source": [
+    "geometry/pe/ui/ProjectPanel.java"
+   ],
+   "panels": [
+    "ProjectPanel"
+   ],
+   "figure": "T-RO Fig. 15(a) = ICRA'08 Fig. 8(a): 85 component events, 18 bounded final shadows, 41 bipartite vertices.",
+   "notes": "First piece of the commented '// polygon 13' block (before '// Second piece of the path').",
+   "provenance": {
+    "origin": "waypoints copied literally from the Java source (y-up .dat frame)",
+    "harness_source_column": "commented '// polygon 13' block in ProjectPanel.java, first piece only (= T-RO Fig. 15a path)",
+    "inside_polygon_check": {
+     "ok": true,
+     "violations": [],
+     "min_vertex_clearance_units": 34.64
+    }
+   },
+   "harness": {
+    "name": "c_first",
+    "n_targets": 100,
+    "fixture": "tests/fixtures/java/13_c_first.json",
+    "java_get_gaps_ok": true
+   }
+  },
+  "P13+": {
+   "polygon": 13,
+   "waypoints": [[195.0, 620.0], [195.0, 510.0], [620.0, 510.0], [620.0, 660.0], [760.0, 660.0], [760.0, 470.0], [590.0, 470.0], [590.0, 440.0], [460.0, 440.0], [69.0, 418.0], [60.0, 575.0], [356.0, 620.0]],
+   "kind": "code",
+   "status": "commented",
+   "source": [
+    "geometry/pe/ui/ProjectPanel.java"
+   ],
+   "panels": [
+    "ProjectPanel"
+   ],
+   "figure": null,
+   "notes": "P13 plus the '// Second piece of the path'. Waypoint (69,418) lies outside 13.dat; the piece fits 1.dat, 7.dat and 9.dat, so it is a leftover from another map. Java getGaps throws ArrayIndexOutOfBoundsException at critical point 239.",
+   "provenance": {
+    "origin": "waypoints copied literally from the Java source (y-up .dat frame)",
+    "harness_source_column": "commented '// polygon 13' block incl. '// Second piece of the path' (leaves 13.dat)",
+    "inside_polygon_check": {
+     "ok": false,
+     "violations": [[ "vertex_outside", "9", "(np.float64(69.0), np.float64(418.0))" ], [ "segment_crosses_edge", "8", "129" ], [ "sample_outside", "8", "0.6" ], [ "segment_crosses_edge", "9", "128" ], [ "sample_outside", "9", "0.0" ]],
+     "min_vertex_clearance_units": 7.29
+    }
+   },
+   "harness": {
+    "name": "c_second",
+    "n_targets": 100,
+    "fixture": "tests/fixtures/java/13_c_second.json",
+    "java_get_gaps_ok": false
+   }
+  },
+  "P13+tail": {
+   "polygon": 13,
+   "waypoints": [[195.0, 620.0], [195.0, 510.0], [620.0, 510.0], [620.0, 660.0], [760.0, 660.0], [760.0, 470.0], [590.0, 470.0], [590.0, 440.0], [460.0, 440.0], [69.0, 418.0], [60.0, 575.0], [356.0, 620.0], [490.0, 858.0], [675.0, 876.0]],
+   "kind": "code",
+   "status": "doubly commented",
+   "source": [
+    "geometry/pe/ui/ProjectPanel.java"
+   ],
+   "panels": [
+    "ProjectPanel"
+   ],
+   "figure": null,
+   "notes": "P13+ plus the doubly-commented tail (490,858) (675,876). Leaves 13.dat; Java getGaps throws ArrayIndexOutOfBoundsException at critical point 239.",
+   "provenance": {
+    "origin": "waypoints copied literally from the Java source (y-up .dat frame)",
+    "harness_source_column": "as c_second plus the doubly-commented tail (490,858),(675,876)"
+   },
+   "harness": {
+    "name": "c_tail",
+    "n_targets": 100,
+    "fixture": "tests/fixtures/java/13_c_tail.json",
+    "java_get_gaps_ok": false
+   }
+  },
+  "P5s": {
+   "polygon": 5,
+   "waypoints": [[580.0, 919.0], [588.0, 672.0], [250.0, 611.0]],
+   "kind": "code",
+   "status": "commented",
+   "source": [
+    "geometry/pe/ui/ProjectPanel.java",
+    "geometry/pe/ui/ProjectPanel2.java"
+   ],
+   "panels": [
+    "ProjectPanel",
+    "ProjectPanel2"
+   ],
+   "figure": null,
+   "notes": "Commented block labelled '// polygon 5'; a sub-path of P5.",
+   "provenance": {
+    "origin": "waypoints copied literally from the Java source (y-up .dat frame)",
+    "harness_source_column": "commented '// polygon 5' block in ProjectPanel/2 (sub-path of PP3)"
+   },
+   "harness": {
+    "name": "c_stub",
+    "n_targets": 100,
+    "fixture": "tests/fixtures/java/5_c_stub.json",
+    "java_get_gaps_ok": true
+   }
+  },
+  "P1L": {
+   "polygon": 1,
+   "waypoints": [[930.0, 886.0], [913.0, 700.0], [746.0, 583.0], [471.0, 580.0], [469.0, 780.0], [665.0, 860.0], [650.0, 965.0], [415.0, 786.0], [295.0, 568.0], [75.0, 565.0], [136.0, 215.0], [375.0, 69.0], [788.0, 27.0], [905.0, 95.0]],
+   "kind": "code",
+   "status": "commented",
+   "source": [
+    "geometry/pe/ui/ProjectPanel.java",
+    "geometry/pe/ui/ProjectPanel2.java",
+    "geometry/pe/ui/ProjectPanel3.java"
+   ],
+   "panels": [
+    "ProjectPanel",
+    "ProjectPanel2",
+    "ProjectPanel3"
+   ],
+   "figure": null,
+   "notes": "In ProjectPanel it sits inside the '// polygon 13' comment block, but it fits polygon 1.",
+   "provenance": {
+    "origin": "waypoints copied literally from the Java source (y-up .dat frame)",
+    "harness_source_column": "commented long polygon-1 path in ProjectPanel/2/3",
+    "inside_polygon_check": {
+     "ok": true,
+     "violations": [],
+     "min_vertex_clearance_units": 15.86
+    }
+   },
+   "harness": {
+    "name": "c_long",
+    "n_targets": 100,
+    "fixture": "tests/fixtures/java/1_c_long.json",
+    "java_get_gaps_ok": true
+   }
+  },
+  "fig_ICRA08-Fig2a": {
+   "polygon": 12,
+   "waypoints": [[79.8, 467.2], [611.8, 466.9], [612.8, 926.8]],
+   "kind": "digitised",
+   "status": "digitised from a paper figure",
+   "source": null,
+   "panels": [],
+   "figure": "ICRA'08 Fig. 2(a)",
+   "paper_reported": "5 shadows at t0; appear 10, 12, 18; split 1->6,7, 7->9,8, 3->13,14; merge 2+6->15, 4+10->11, 11+5->16, 8+16->17, 17+12->19; disappear 9, 14; final 13, 15, 18, 19 (T-RO Fig. 11 labels).",
+   "provenance": {
+    "orientation_in_figure": "ydown",
+    "source_image": "YuLav08ICRA.pdf p.2 (vector), rendered 600 dpi",
+    "same_as": "T-RO Fig. 11(a) (same drawing, anisotropically squeezed); ICRA08 Fig. 3(a)-(d)",
+    "polygon_fit": {
+     "model": "fig_px = a*X + b (per axis, X = .dat coord after orientation)",
+     "ax": 0.6455380276028755,
+     "ay": 0.6417714730596347,
+     "bx": 40.44442548496503,
+     "by": 54.22288882967858,
+     "rms_px": 4.06,
+     "rms_dat_units": 6.31,
+     "px_per_unit": 0.6437
+    },
+    "path_direction": "first point = start, last point = arrow tip",
+    "digitisation_residual_px": {
+     "p50": 2.2,
+     "p95": 4.45
+    },
+    "inside_polygon_check": {
+     "ok": true,
+     "violations": 0,
+     "min_vertex_clearance_units": 31.0
+    },
+    "closest_code_path": "P12",
+    "per_vertex_deviation_from_code_units": [
+     20.0,
+     36.0,
+     92.7
+    ],
+    "note": "Polygon fit residual is dominated by one wall: the paper drawing has vertices 21-22 at x~250 (measured 249.8 on ICRA08 Fig.2a) where 12.dat has x=285.71; every other wall matches the 1000/7 grid within ~1 unit. The paper path is the same L-shaped route as ProjectPanel.java polygon 12 [(90,450),(580,450),(580,840),(520,840)] but drawn at y~465 / x~610 and ending in an arrow at y~927 with no final hook to (520,840).",
+    "method": "docs/notes/original_maps.md (dihedral fit of the .dat map to the figure, then digitisation of the drawn path in the .dat frame)"
+   },
+   "harness": {
+    "name": "fig_ICRA08-Fig2a",
+    "n_targets": 100,
+    "fixture": "tests/fixtures/java/12_fig_ICRA08-Fig2a.json",
+    "java_get_gaps_ok": true
+   }
+  },
+  "fig_ICRA08-Fig3a": {
+   "polygon": 12,
+   "waypoints": [[114.8, 467.5], [612.0, 467.1], [612.6, 926.2]],
+   "kind": "digitised",
+   "status": "digitised from a paper figure",
+   "source": null,
+   "panels": [],
+   "figure": "ICRA'08 Fig. 3(a)",
+   "paper_reported": "Illustrates split, appear, merge and disappear only; no counts.",
+   "provenance": {
+    "orientation_in_figure": "ydown",
+    "source_image": "YuLav08ICRA.pdf p.3 (vector), rendered 600 dpi",
+    "same_as": "ICRA08 Fig. 3(b)-(d) identical map/path",
+    "polygon_fit": {
+     "model": "fig_px = a*X + b (per axis, X = .dat coord after orientation)",
+     "ax": 0.8074360584004662,
+     "ay": 0.8031544342394177,
+     "bx": 39.33606011267088,
+     "by": 14.130086776637457,
+     "rms_px": 5.05,
+     "rms_dat_units": 6.27,
+     "px_per_unit": 0.8053
+    },
+    "path_direction": "first point = start, last point = arrow tip",
+    "digitisation_residual_px": {
+     "p50": 3.49,
+     "p95": 6.56
+    },
+    "inside_polygon_check": {
+     "ok": true,
+     "violations": 0,
+     "min_vertex_clearance_units": 30.9
+    },
+    "closest_code_path": "P12",
+    "per_vertex_deviation_from_code_units": [
+     30.4,
+     36.3,
+     92.2
+    ],
+    "note": "Polygon fit residual is dominated by one wall: the paper drawing has vertices 21-22 at x~250 (measured 249.8 on ICRA08 Fig.2a) where 12.dat has x=285.71; every other wall matches the 1000/7 grid within ~1 unit. The paper path is the same L-shaped route as ProjectPanel.java polygon 12 [(90,450),(580,450),(580,840),(520,840)] but drawn at y~465 / x~610 and ending in an arrow at y~927 with no final hook to (520,840).",
+    "method": "docs/notes/original_maps.md (dihedral fit of the .dat map to the figure, then digitisation of the drawn path in the .dat frame)"
+   },
+   "harness": {
+    "name": "fig_ICRA08-Fig3a",
+    "n_targets": 100,
+    "fixture": "tests/fixtures/java/12_fig_ICRA08-Fig3a.json",
+    "java_get_gaps_ok": true
+   }
+  },
+  "fig_TRO-Fig11a": {
+   "polygon": 12,
+   "waypoints": [[86.3, 464.5], [612.1, 464.5], [607.9, 933.0]],
+   "kind": "digitised",
+   "status": "digitised from a paper figure",
+   "source": null,
+   "panels": [],
+   "figure": "T-RO Fig. 11(a)",
+   "paper_reported": "5 shadows at t0; appear 10, 12, 18; split 1->6,7, 7->9,8, 3->13,14; merge 2+6->15, 4+10->11, 11+5->16, 8+16->17, 17+12->19; disappear 9, 14; final 13, 15, 18, 19; bounds on s19: [10, 24].",
+   "provenance": {
+    "orientation_in_figure": "ydown",
+    "source_image": "YuLav12TOR.pdf p.9 embedded 400x439 JPEG (150 ppi), native pixels",
+    "same_as": "ICRA08 Fig. 2(a)",
+    "polygon_fit": {
+     "model": "fig_px = a*X + b (per axis, X = .dat coord after orientation)",
+     "ax": 0.11595498708917698,
+     "ay": 0.19795875448169434,
+     "bx": 4.6370534555484567e-07,
+     "by": 1.041212542544697,
+     "rms_px": 0.51,
+     "rms_dat_units": 3.24,
+     "px_per_unit": 0.157
+    },
+    "path_direction": "first point = start, last point = arrow tip",
+    "digitisation_residual_px": {
+     "p50": 0.16,
+     "p95": 0.8
+    },
+    "inside_polygon_check": {
+     "ok": true,
+     "violations": 0,
+     "min_vertex_clearance_units": 30.7
+    },
+    "closest_code_path": "P12",
+    "per_vertex_deviation_from_code_units": [
+     15.0,
+     35.2,
+     97.1
+    ],
+    "note": "Polygon fit residual is dominated by one wall: the paper drawing has vertices 21-22 at x~250 (measured 249.8 on ICRA08 Fig.2a) where 12.dat has x=285.71; every other wall matches the 1000/7 grid within ~1 unit. The paper path is the same L-shaped route as ProjectPanel.java polygon 12 [(90,450),(580,450),(580,840),(520,840)] but drawn at y~465 / x~610 and ending in an arrow at y~927 with no final hook to (520,840).",
+    "method": "docs/notes/original_maps.md (dihedral fit of the .dat map to the figure, then digitisation of the drawn path in the .dat frame)"
+   },
+   "harness": {
+    "name": "fig_TRO-Fig11a",
+    "n_targets": 100,
+    "fixture": "tests/fixtures/java/12_fig_TRO-Fig11a.json",
+    "java_get_gaps_ok": true
+   }
+  },
+  "fig_ICRA08-Fig8a": {
+   "polygon": 13,
+   "waypoints": [[196.9, 614.2], [196.6, 508.4], [615.4, 508.5], [614.8, 642.0], [757.5, 642.3], [757.5, 473.1], [578.5, 473.3], [579.9, 419.1], [448.7, 420.0]],
+   "kind": "digitised",
+   "status": "digitised from a paper figure",
+   "source": null,
+   "panels": [],
+   "figure": "ICRA'08 Fig. 8(a)",
+   "paper_reported": "85 component events; 100 targets; bipartite graph 41 vertices / 60 edges; 18 final shadows; 0.1 s for one team.",
+   "provenance": {
+    "orientation_in_figure": "yup",
+    "source_image": "YuLav08ICRA.pdf p.8 (vector), rendered 600 dpi",
+    "same_as": "T-RO Fig. 15(a)",
+    "polygon_fit": {
+     "model": "fig_px = a*X + b (per axis, X = .dat coord after orientation)",
+     "ax": 0.808004113086092,
+     "ay": 0.8081631085288725,
+     "bx": 64.48078581169102,
+     "by": 54.25365507666429,
+     "rms_px": 0.0,
+     "rms_dat_units": 0.0,
+     "px_per_unit": 0.8081
+    },
+    "path_direction": "first point = start, last point = arrow tip",
+    "digitisation_residual_px": {
+     "p50": 1.49,
+     "p95": 2.54
+    },
+    "inside_polygon_check": {
+     "ok": true,
+     "violations": 0,
+     "min_vertex_clearance_units": 37.1
+    },
+    "closest_code_path": "P13",
+    "per_vertex_deviation_from_code_units": [
+     6.1,
+     2.2,
+     4.9,
+     18.7,
+     17.9,
+     4.0,
+     12.0,
+     23.2,
+     23.0
+    ],
+    "note": "Same 9-vertex route as the commented polygon-13 path in ProjectPanel.java; vertices 3,4 (y 660 in code vs ~642 in figure) and 7,8 (y 440 vs ~420) differ by 18-24 units. Last vertex is the arrow tip (~450-475 vs code 460).",
+    "method": "docs/notes/original_maps.md (dihedral fit of the .dat map to the figure, then digitisation of the drawn path in the .dat frame)"
+   },
+   "harness": {
+    "name": "fig_ICRA08-Fig8a",
+    "n_targets": 100,
+    "fixture": "tests/fixtures/java/13_fig_ICRA08-Fig8a.json",
+    "java_get_gaps_ok": true
+   }
+  },
+  "fig_TRO-Fig15a": {
+   "polygon": 13,
+   "waypoints": [[196.7, 610.8], [196.0, 507.7], [617.6, 507.9], [616.9, 642.2], [757.4, 642.8], [758.2, 473.5], [580.1, 473.4], [579.8, 418.7], [457.2, 420.5]],
+   "kind": "digitised",
+   "status": "digitised from a paper figure",
+   "source": null,
+   "panels": [],
+   "figure": "T-RO Fig. 15(a)",
+   "paper_reported": "85 component events; 100 targets; bipartite graph 41 vertices / 60 edges; 18 final shadows; 0.1 s for one team.",
+   "provenance": {
+    "orientation_in_figure": "yup",
+    "source_image": "YuLav12TOR.pdf p.15 embedded 400x200 JPEG (150 ppi), native pixels",
+    "same_as": "ICRA08 Fig. 8(a)",
+    "polygon_fit": {
+     "model": "fig_px = a*X + b (per axis, X = .dat coord after orientation)",
+     "ax": 0.1745743816559584,
+     "ay": 0.1746452574354057,
+     "bx": 0.2025462054280982,
+     "by": 1.0382481037671603,
+     "rms_px": 0.17,
+     "rms_dat_units": 0.95,
+     "px_per_unit": 0.1746
+    },
+    "path_direction": "first point = start, last point = arrow tip",
+    "digitisation_residual_px": {
+     "p50": 0.45,
+     "p95": 0.56
+    },
+    "inside_polygon_check": {
+     "ok": true,
+     "violations": 0,
+     "min_vertex_clearance_units": 36.5
+    },
+    "closest_code_path": "P13",
+    "per_vertex_deviation_from_code_units": [
+     9.3,
+     2.5,
+     3.2,
+     18.1,
+     17.4,
+     4.0,
+     10.5,
+     23.6,
+     19.7
+    ],
+    "note": "Same 9-vertex route as the commented polygon-13 path in ProjectPanel.java; vertices 3,4 (y 660 in code vs ~642 in figure) and 7,8 (y 440 vs ~420) differ by 18-24 units. Last vertex is the arrow tip (~450-475 vs code 460).",
+    "method": "docs/notes/original_maps.md (dihedral fit of the .dat map to the figure, then digitisation of the drawn path in the .dat frame)"
+   },
+   "harness": {
+    "name": "fig_TRO-Fig15a",
+    "n_targets": 100,
+    "fixture": "tests/fixtures/java/13_fig_TRO-Fig15a.json",
+    "java_get_gaps_ok": true
+   }
+  },
+  "fig_ICRA08-Fig8b": {
+   "polygon": 14,
+   "waypoints": [[88.2, 626.3], [176.9, 520.0], [328.6, 448.8], [373.9, 359.3], [177.3, 323.9], [106.0, 244.0], [132.0, 143.0], [194.6, 288.0], [391.8, 323.8], [454.0, 154.3], [597.0, 136.5], [661.6, 190.7], [613.7, 198.6], [525.7, 171.9], [453.8, 386.7], [580.4, 367.5], [543.1, 440.1], [382.5, 439.7], [436.3, 626.9], [629.6, 714.8]],
+   "kind": "digitised",
+   "status": "digitised from a paper figure",
+   "source": null,
+   "panels": [],
+   "figure": "ICRA'08 Fig. 8(b)",
+   "paper_reported": "385 component events; 491 total shadows; bipartite graph 124 vertices / 339 edges; 10^6 targets in 5 teams; 12 final shadows; 2.5 s.",
+   "provenance": {
+    "orientation_in_figure": "ydown",
+    "source_image": "YuLav08ICRA.pdf p.8 (vector), rendered 600 dpi",
+    "same_as": "T-RO Fig. 15(b)",
+    "polygon_fit": {
+     "model": "fig_px = a*X + b (per axis, X = .dat coord after orientation)",
+     "ax": 0.8037943969756816,
+     "ay": 0.8057704016862499,
+     "bx": 61.931522333747466,
+     "by": 54.025225369524634,
+     "rms_px": 0.16,
+     "rms_dat_units": 0.2,
+     "px_per_unit": 0.8048
+    },
+    "path_direction": "first point = start, last point = arrow tip",
+    "digitisation_residual_px": {
+     "p50": 1.48,
+     "p95": 2.81
+    },
+    "inside_polygon_check": {
+     "ok": true,
+     "violations": 0,
+     "min_vertex_clearance_units": 20.5
+    },
+    "closest_code_path": "P14a",
+    "per_vertex_deviation_from_code_units": [
+     1.7,
+     2.7,
+     3.0,
+     2.4,
+     2.8,
+     3.1,
+     1.9,
+     3.0,
+     2.6,
+     2.8,
+     2.9,
+     3.3,
+     3.3,
+     2.5,
+     3.2,
+     1.5,
+     3.0,
+     2.6,
+     2.2,
+     4.4
+    ],
+    "note": "Figure path = ProjectPanel4/5 polygon-14 path vertices 0..19 to within ~3 units (line width); the code has one more vertex (PP4: (678.57,687.5); PP5: (688.57,657.5), PP5 v19 y=712.29) that is not drawn - the figure arrow ends at v19 (633.93,714.29).",
+    "method": "docs/notes/original_maps.md (dihedral fit of the .dat map to the figure, then digitisation of the drawn path in the .dat frame)"
+   },
+   "harness": {
+    "name": "fig_ICRA08-Fig8b",
+    "n_targets": 1000000,
+    "fixture": "tests/fixtures/java/14_fig_ICRA08-Fig8b.json",
+    "java_get_gaps_ok": false
+   }
+  },
+  "fig_TRO-Fig15b": {
+   "polygon": 14,
+   "waypoints": [[92.5, 621.8], [178.3, 518.2], [332.0, 445.5], [374.7, 357.5], [177.3, 321.1], [106.7, 240.0], [133.8, 141.4], [195.4, 285.5], [392.7, 321.9], [455.1, 152.5], [597.2, 134.0], [660.8, 187.9], [612.2, 195.4], [526.3, 170.1], [455.2, 384.6], [580.4, 366.0], [544.6, 438.2], [383.9, 437.6], [437.5, 625.3], [622.1, 709.3]],
+   "kind": "digitised",
+   "status": "digitised from a paper figure",
+   "source": null,
+   "panels": [],
+   "figure": "T-RO Fig. 15(b)",
+   "paper_reported": "385 component events; 491 total shadows; bipartite graph 124 vertices / 339 edges; 10^6 targets in 5 teams; 12 final shadows; under 1 s.",
+   "provenance": {
+    "orientation_in_figure": "ydown",
+    "source_image": "YuLav12TOR.pdf p.15 embedded 400x200 JPEG (150 ppi), native pixels",
+    "same_as": "ICRA08 Fig. 8(b)",
+    "polygon_fit": {
+     "model": "fig_px = a*X + b (per axis, X = .dat coord after orientation)",
+     "ax": 0.17435551707657282,
+     "ay": 0.17447523611299803,
+     "bx": 23.80265503159141,
+     "by": 1.0954731738607628,
+     "rms_px": 0.15,
+     "rms_dat_units": 0.86,
+     "px_per_unit": 0.1744
+    },
+    "path_direction": "first point = start, last point = arrow tip",
+    "digitisation_residual_px": {
+     "p50": 0.38,
+     "p95": 0.64
+    },
+    "inside_polygon_check": {
+     "ok": true,
+     "violations": 0,
+     "min_vertex_clearance_units": 19.0
+    },
+    "closest_code_path": "P14a",
+    "per_vertex_deviation_from_code_units": [
+     4.5,
+     0.5,
+     1.8,
+     0.4,
+     1.3,
+     1.2,
+     1.4,
+     1.1,
+     0.5,
+     0.7,
+     1.0,
+     0.4,
+     4.0,
+     0.7,
+     0.7,
+     0.0,
+     0.7,
+     0.1,
+     0.3,
+     12.8
+    ],
+    "note": "Figure path = ProjectPanel4/5 polygon-14 path vertices 0..19 to within ~3 units (line width); the code has one more vertex (PP4: (678.57,687.5); PP5: (688.57,657.5), PP5 v19 y=712.29) that is not drawn - the figure arrow ends at v19 (633.93,714.29).",
+    "method": "docs/notes/original_maps.md (dihedral fit of the .dat map to the figure, then digitisation of the drawn path in the .dat frame)"
+   },
+   "harness": {
+    "name": "fig_TRO-Fig15b",
+    "n_targets": 1000000,
+    "fixture": "tests/fixtures/java/14_fig_TRO-Fig15b.json",
+    "java_get_gaps_ok": true
+   }
+  }
+ },
+ "demo": {
+  "_doc": "Default robot path of every map for shadowinfo.polygon.simulate.PolygonSimulator and the demo (provenance \"demo\"). Maps with a path in the Java code use it (source = the label in \"paths\"); the other maps have a closed patrol tour designed for the demo: via points (regions and visiting order) chosen by hand from the map, joined by shortest routes on a 10-unit grid (5 units on map 8) keeping the stated clearance from the boundary, then string-pulled. The grid origin is offset by (3.7, 6.1) so that no waypoint shares a coordinate with a vertex. Every path is checked by shadowinfo.polygon.simulate.validate_path (tests/test_polygon_simulate.py). at_end: \"loop\" runs a closed tour again, \"reverse\" runs an open path back and forth.",
+  "1": {
+   "polygon": 1,
+   "waypoints": [[930.0, 886.0], [913.0, 700.0], [746.0, 583.0], [75.0, 565.0], [136.0, 215.0], [375.0, 69.0], [788.0, 27.0], [905.0, 95.0]],
+   "closed": false,
+   "at_end": "reverse",
+   "source": "P1",
+   "provenance": "demo",
+   "note": "The ProjectPanel2 path of the Java code (getGaps + never-see-evader)."
+  },
+  "2": {
+   "polygon": 2,
+   "waypoints": [[303.7, 396.1], [443.7, 396.1], [563.7, 326.1], [723.7, 296.1], [813.7, 196.1], [903.7, 146.1], [933.7, 256.1], [823.7, 196.1], [643.7, 246.1], [443.7, 396.1], [423.7, 516.1], [663.7, 526.1], [743.7, 546.1], [783.7, 546.1], [703.7, 616.1], [683.7, 756.1], [873.7, 816.1], [863.7, 896.1], [733.7, 696.1], [653.7, 586.1], [563.7, 556.1], [513.7, 556.1], [453.7, 646.1], [483.7, 796.1], [473.7, 876.1], [563.7, 956.1], [503.7, 876.1], [483.7, 776.1], [303.7, 716.1], [233.7, 646.1], [133.7, 586.1], [63.7, 596.1], [103.7, 526.1], [83.7, 576.1], [123.7, 586.1], [303.7, 656.1], [403.7, 716.1], [423.7, 686.1], [423.7, 516.1], [303.7, 396.1]],
+   "closed": true,
+   "at_end": "loop",
+   "source": null,
+   "provenance": "demo",
+   "note": "Closed patrol tour designed for the demo (see _doc).",
+   "design": {
+    "vias": [[300, 400], [560, 330], [720, 300], [900, 150], [930, 260], [640, 250], [440, 400], [420, 520], [780, 545], [700, 620], [680, 760], [870, 820], [860, 900], [560, 560], [450, 650], [470, 880], [560, 960], [300, 720], [230, 650], [60, 600], [100, 520], [300, 400]],
+    "clearance_units": 12.0,
+    "grid_units": 10.0
+   }
+  },
+  "3": {
+   "polygon": 3,
+   "waypoints": [[453.7, 516.1], [423.7, 876.1], [253.7, 896.1], [473.7, 916.1], [473.7, 696.1], [483.7, 666.1], [883.7, 556.1], [953.7, 646.1], [873.7, 566.1], [703.7, 596.1], [563.7, 416.1], [613.7, 126.1], [473.7, 56.1], [553.7, 106.1], [543.7, 326.1], [523.7, 366.1], [373.7, 456.1], [313.7, 486.1], [113.7, 426.1], [63.7, 266.1], [153.7, 496.1], [253.7, 486.1], [303.7, 506.1], [453.7, 516.1]],
+   "closed": true,
+   "at_end": "loop",
+   "source": null,
+   "provenance": "demo",
+   "note": "Closed patrol tour designed for the demo (see _doc).",
+   "design": {
+    "vias": [[450, 520], [420, 880], [250, 900], [470, 920], [480, 700], [880, 560], [950, 650], [700, 600], [560, 420], [610, 130], [470, 65], [540, 330], [360, 450], [110, 430], [60, 270], [150, 500], [300, 510], [450, 520]],
+    "clearance_units": 18.0,
+    "grid_units": 10.0
+   }
+  },
+  "4": {
+   "polygon": 4,
+   "waypoints": [[443.7, 446.1], [443.7, 556.1], [413.7, 616.1], [423.7, 636.1], [603.7, 636.1], [583.7, 686.1], [703.7, 806.1], [873.7, 876.1], [643.7, 846.1], [503.7, 696.1], [273.7, 616.1], [113.7, 446.1], [83.7, 436.1], [73.7, 156.1], [83.7, 136.1], [183.7, 46.1], [303.7, 36.1], [163.7, 56.1], [73.7, 146.1], [73.7, 156.1], [83.7, 436.1], [273.7, 616.1], [353.7, 626.1], [443.7, 486.1], [443.7, 446.1], [513.7, 296.1], [563.7, 246.1], [563.7, 116.1], [593.7, 56.1], [603.7, 46.1], [803.7, 46.1], [903.7, 56.1], [933.7, 176.1], [823.7, 56.1], [803.7, 46.1], [603.7, 46.1], [583.7, 66.1], [563.7, 116.1], [563.7, 246.1], [513.7, 296.1], [513.7, 326.1], [443.7, 446.1]],
+   "closed": true,
+   "at_end": "loop",
+   "source": null,
+   "provenance": "demo",
+   "note": "Closed patrol tour designed for the demo (see _doc).",
+   "design": {
+    "vias": [[440, 450], [600, 640], [870, 880], [640, 850], [270, 620], [110, 440], [80, 160], [300, 40], [600, 50], [900, 60], [930, 180], [800, 50], [560, 120], [510, 330], [440, 450]],
+    "clearance_units": 12.0,
+    "grid_units": 10.0
+   }
+  },
+  "5": {
+   "polygon": 5,
+   "waypoints": [[946.0, 501.0], [723.0, 591.0], [670.0, 511.0], [596.0, 643.0], [606.0, 930.0], [580.0, 919.0], [588.0, 672.0], [250.0, 611.0], [266.0, 535.0], [115.0, 433.0], [93.0, 358.0], [245.0, 286.0], [98.0, 288.0], [93.0, 123.0]],
+   "closed": false,
+   "at_end": "reverse",
+   "source": "P5",
+   "provenance": "demo",
+   "note": "The ProjectPanel3 path of the Java code (getGaps + never-see-evader)."
+  },
+  "6": {
+   "polygon": 6,
+   "waypoints": [[463.7, 466.1], [363.7, 696.1], [443.7, 856.1], [483.7, 926.1], [413.7, 636.1], [513.7, 586.1], [693.7, 496.1], [893.7, 496.1], [903.7, 516.1], [953.7, 716.1], [903.7, 516.1], [883.7, 486.1], [643.7, 426.1], [563.7, 246.1], [463.7, 116.1], [563.7, 36.1], [563.7, 246.1], [543.7, 276.1], [573.7, 346.1], [323.7, 526.1], [303.7, 536.1], [273.7, 546.1], [123.7, 496.1], [113.7, 446.1], [103.7, 346.1], [113.7, 486.1], [123.7, 496.1], [293.7, 546.1], [303.7, 536.1], [463.7, 466.1]],
+   "closed": true,
+   "at_end": "loop",
+   "source": null,
+   "provenance": "demo",
+   "note": "Closed patrol tour designed for the demo (see _doc).",
+   "design": {
+    "vias": [[460, 470], [360, 700], [480, 930], [520, 620], [690, 500], [880, 540], [950, 820], [900, 520], [640, 430], [560, 250], [460, 120], [560, 40], [520, 300], [300, 500], [120, 500], [140, 280], [300, 520], [460, 470]],
+    "clearance_units": 18.0,
+    "grid_units": 10.0
+   }
+  },
+  "7": {
+   "polygon": 7,
+   "waypoints": [[153.7, 546.1], [453.7, 596.1], [463.7, 846.1], [483.7, 646.1], [803.7, 596.1], [803.7, 116.1], [653.7, 56.1], [663.7, 236.1], [713.7, 326.1], [703.7, 376.1], [253.7, 376.1], [153.7, 146.1], [423.7, 76.1], [423.7, 226.1], [203.7, 356.1], [63.7, 606.1], [153.7, 546.1]],
+   "closed": true,
+   "at_end": "loop",
+   "source": null,
+   "provenance": "demo",
+   "note": "Closed patrol tour designed for the demo (see _doc).",
+   "design": {
+    "vias": [[150, 550], [450, 600], [465, 850], [480, 650], [800, 600], [800, 120], [650, 60], [660, 240], [700, 380], [250, 380], [150, 150], [420, 80], [420, 230], [200, 360], [60, 610], [150, 550]],
+    "clearance_units": 18.0,
+    "grid_units": 10.0
+   }
+  },
+  "8": {
+   "polygon": 8,
+   "waypoints": [[38.7, 916.1], [108.7, 886.1], [208.7, 941.1], [288.7, 801.1], [318.7, 761.1], [448.7, 791.1], [318.7, 761.1], [258.7, 861.1], [388.7, 961.1], [483.7, 966.1], [548.7, 881.1], [498.7, 861.1], [588.7, 816.1], [598.7, 801.1], [613.7, 961.1], [448.7, 976.1], [318.7, 941.1], [298.7, 921.1], [268.7, 976.1], [153.7, 981.1], [148.7, 976.1], [233.7, 981.1], [273.7, 971.1], [268.7, 956.1], [93.7, 906.1], [38.7, 916.1]],
+   "closed": true,
+   "at_end": "loop",
+   "source": null,
+   "provenance": "demo",
+   "note": "Closed patrol tour designed for the demo (see _doc).",
+   "design": {
+    "vias": [[30, 930], [110, 885], [200, 950], [290, 800], [450, 790], [500, 880], [600, 800], [630, 960], [450, 975], [300, 920], [150, 960], [30, 930]],
+    "clearance_units": 7.0,
+    "grid_units": 5.0
+   }
+  },
+  "9": {
+   "polygon": 9,
+   "waypoints": [[153.7, 596.1], [303.7, 556.1], [603.7, 586.1], [483.7, 626.1], [463.7, 686.1], [523.7, 846.1], [683.7, 916.1], [523.7, 776.1], [483.7, 626.1], [513.7, 616.1], [773.7, 616.1], [903.7, 756.1], [903.7, 916.1], [893.7, 686.1], [883.7, 676.1], [793.7, 576.1], [133.7, 536.1], [123.7, 526.1], [153.7, 306.1], [203.7, 296.1], [533.7, 56.1], [863.7, 126.1], [873.7, 176.1], [883.7, 396.1], [883.7, 146.1], [843.7, 116.1], [703.7, 36.1], [303.7, 76.1], [103.7, 246.1], [93.7, 446.1], [153.7, 596.1]],
+   "closed": true,
+   "at_end": "loop",
+   "source": null,
+   "provenance": "demo",
+   "note": "Closed patrol tour designed for the demo (see _doc).",
+   "design": {
+    "vias": [[150, 600], [300, 560], [600, 590], [460, 690], [520, 850], [700, 940], [900, 920], [880, 680], [790, 580], [880, 400], [880, 150], [700, 40], [300, 80], [100, 250], [90, 450], [150, 600]],
+    "clearance_units": 15.0,
+    "grid_units": 10.0
+   }
+  },
+  "10": {
+   "polygon": 10,
+   "waypoints": [[303.7, 556.1], [643.7, 556.1], [683.7, 526.1], [953.7, 496.1], [693.7, 456.1], [643.7, 296.1], [953.7, 296.1], [963.7, 116.1], [913.7, 226.1], [723.7, 226.1], [693.7, 176.1], [623.7, 46.1], [663.7, 136.1], [663.7, 246.1], [623.7, 266.1], [523.7, 276.1], [633.7, 376.1], [633.7, 416.1], [623.7, 576.1], [603.7, 596.1], [603.7, 606.1], [563.7, 696.1], [583.7, 866.1], [803.7, 906.1], [953.7, 946.1], [953.7, 676.1], [893.7, 816.1], [633.7, 936.1], [623.7, 886.1], [553.7, 876.1], [473.7, 846.1], [563.7, 736.1], [563.7, 696.1], [603.7, 606.1], [343.7, 616.1], [303.7, 696.1], [303.7, 936.1], [223.7, 946.1], [283.7, 876.1], [283.7, 766.1], [243.7, 746.1], [63.7, 716.1], [63.7, 946.1], [63.7, 716.1], [43.7, 586.1], [33.7, 376.1], [103.7, 36.1], [63.7, 326.1], [63.7, 646.1], [113.7, 696.1], [263.7, 626.1], [303.7, 556.1]],
+   "closed": true,
+   "at_end": "loop",
+   "source": null,
+   "provenance": "demo",
+   "note": "Closed patrol tour designed for the demo (see _doc).",
+   "design": {
+    "vias": [[300, 560], [640, 560], [950, 500], [690, 455], [640, 300], [950, 300], [960, 120], [690, 180], [620, 50], [520, 280], [630, 420], [600, 600], [560, 700], [580, 870], [800, 910], [950, 950], [950, 680], [620, 940], [470, 850], [600, 610], [300, 700], [300, 940], [220, 950], [60, 720], [60, 950], [40, 590], [30, 380], [100, 40], [60, 330], [110, 700], [300, 560]],
+    "clearance_units": 18.0,
+    "grid_units": 10.0
+   }
+  },
+  "11": {
+   "polygon": 11,
+   "waypoints": [[63.7, 56.1], [63.7, 296.1], [163.7, 206.1], [303.7, 176.1], [453.7, 156.1], [473.7, 96.1], [583.7, 56.1], [383.7, 76.1], [403.7, 296.1], [443.7, 396.1], [503.7, 286.1], [933.7, 276.1], [933.7, 896.1], [963.7, 146.1], [903.7, 56.1], [763.7, 56.1], [853.7, 106.1], [903.7, 296.1], [523.7, 296.1], [513.7, 326.1], [453.7, 416.1], [303.7, 446.1], [63.7, 456.1], [103.7, 556.1], [163.7, 476.1], [333.7, 486.1], [363.7, 516.1], [603.7, 516.1], [683.7, 596.1], [703.7, 596.1], [703.7, 946.1], [633.7, 626.1], [603.7, 616.1], [363.7, 596.1], [373.7, 746.1], [63.7, 766.1], [243.7, 886.1], [253.7, 896.1], [463.7, 946.1], [403.7, 886.1], [373.7, 646.1], [363.7, 516.1], [313.7, 476.1], [203.7, 436.1], [393.7, 426.1], [403.7, 386.1], [403.7, 216.1], [343.7, 206.1], [163.7, 206.1], [143.7, 246.1], [143.7, 296.1], [63.7, 56.1]],
+   "closed": true,
+   "at_end": "loop",
+   "source": null,
+   "provenance": "demo",
+   "note": "Closed patrol tour designed for the demo (see _doc).",
+   "design": {
+    "vias": [[60, 60], [60, 300], [300, 180], [450, 160], [580, 60], [380, 80], [440, 400], [500, 290], [930, 280], [930, 900], [965, 150], [900, 60], [760, 60], [900, 300], [450, 420], [300, 450], [60, 460], [100, 560], [360, 520], [600, 520], [700, 600], [700, 950], [360, 600], [370, 750], [60, 770], [250, 900], [460, 950], [370, 650], [200, 440], [150, 300], [60, 60]],
+    "clearance_units": 18.0,
+    "grid_units": 10.0
+   }
+  },
+  "12": {
+   "polygon": 12,
+   "waypoints": [[90.0, 450.0], [580.0, 450.0], [580.0, 840.0], [520.0, 840.0]],
+   "closed": false,
+   "at_end": "reverse",
+   "source": "P12",
+   "provenance": "demo",
+   "note": "The ProjectPanel path of the Java code: ICRA'08 Fig. 2/4, T-RO Fig. 11(b)."
+  },
+  "13": {
+   "polygon": 13,
+   "waypoints": [[195.0, 620.0], [195.0, 510.0], [620.0, 510.0], [620.0, 660.0], [760.0, 660.0], [760.0, 470.0], [590.0, 470.0], [590.0, 440.0], [460.0, 440.0]],
+   "closed": false,
+   "at_end": "reverse",
+   "source": "P13",
+   "provenance": "demo",
+   "note": "The commented 'polygon 13' path of ProjectPanel in the Java code: T-RO Fig. 15(a) / ICRA'08 Fig. 8(a)."
+  },
+  "14": {
+   "polygon": 14,
+   "waypoints": [[89.29, 625.0], [178.57, 517.86], [330.36, 446.43], [375.0, 357.14], [178.57, 321.43], [107.14, 241.07], [133.93, 142.86], [196.43, 285.71], [392.86, 321.43], [455.36, 151.79], [598.21, 133.93], [660.71, 187.5], [616.07, 196.43], [526.79, 169.64], [455.36, 383.93], [580.36, 366.07], [544.64, 437.5], [383.93, 437.5], [437.5, 625.0], [633.93, 712.29], [688.57, 657.5]],
+   "closed": false,
+   "at_end": "reverse",
+   "source": "P14b",
+   "provenance": "demo",
+   "note": "The ProjectPanel5 path of the Java code: T-RO Fig. 15(b) / ICRA'08 Fig. 8(b)."
+  }
+ }
+}

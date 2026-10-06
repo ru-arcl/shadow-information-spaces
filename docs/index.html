@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shadow Information Spaces</title>
+<meta name="description" content="Interactive demo of combinatorial and probabilistic filters over shadow information spaces (Yu and LaValle, IEEE T-RO 2012), on a grid office and the 14 maps of the original Java implementation.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-text">
+    <h1>Shadow Information Spaces</h1>
+    <p class="byline">Combinatorial filters for tracking targets &middot; J. Yu and S. M. LaValle, <i>IEEE T-RO</i> 28(2), 2012</p>
+  </div>
+  <a class="repo-link" href="https://github.com/ru-arcl/shadow-information-spaces">Code on GitHub</a>
+</header>
+
+<p class="intro" id="intro">
+  A robot follows a path through a floor plan: a grid office, or one of the 14 polygonal maps of the
+  <a href="https://github.com/arc-l/shadow-information-space">original Java implementation</a> (including those of the
+  paper's Figs. 11 and 15). Whatever it cannot see right now is a <em>shadow</em>. As it moves, shadows
+  appear, disappear, split and merge, and targets wander in and out of view. The robot never sees a hidden target: it only
+  records these <em>shadow events</em> and the targets crossing the edge of its view. From that stream alone the
+  combinatorial filter maintains a bipartite information state and uses max-flow to compute the tightest possible bounds
+  on the number of targets in each shadow, while a probabilistic filter tracks a truncated joint distribution of the counts.
+  Pick a map and a path (from the Java code, digitised from the paper, or <b>drawn by you</b>) and turn on
+  <b>ground truth</b> to compare.
+</p>
+<button class="intro-more" id="intro-more" type="button" aria-controls="intro" aria-expanded="false">Read more</button>
+
+<main class="layout">
+  <section class="stage" aria-label="Simulation">
+    <div class="toolbar" role="toolbar" aria-label="Playback">
+      <button id="btn-play" class="btn primary" type="button" title="Play / pause (space)">
+        <svg class="ico ico-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
+        <svg class="ico ico-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z"/></svg>
+        <span class="lbl">Play</span>
+      </button>
+      <button id="btn-step" class="btn" type="button" title="Step one tick (&rarr;)">
+        <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2.5v11l7-5.5zM11 2.5h2.5v11H11z"/></svg>
+        <span class="lbl">Step</span>
+      </button>
+      <button id="btn-reset" class="btn" type="button" title="Reset">
+        <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5a5.5 5.5 0 1 1-5.2 3.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M1.6 2.4l1.6 4.4 4.3-1.7z"/></svg>
+        <span class="lbl">Reset</span>
+      </button>
+      <label class="speed">
+        <span>Speed</span>
+        <input id="speed" type="range" min="1" max="60" step="1" value="6">
+        <output id="speed-out">6/s</output>
+      </label>
+      <span class="tick" id="tick">t = 0</span>
+    </div>
+
+    <div class="scene" id="scene" role="group" aria-label="Map and path">
+      <label class="field field-map">
+        <span>Map</span>
+        <select id="opt-map"></select>
+      </label>
+      <label class="field field-path">
+        <span>Path</span>
+        <select id="opt-path"></select>
+      </label>
+      <button id="btn-draw" class="btn" type="button" title="Draw your own path on the map" aria-pressed="false">
+        <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 13.5l1-3.6 7.7-7.7a1.6 1.6 0 0 1 2.3 2.3l-7.7 7.7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span class="lbl">Draw path</span>
+      </button>
+    </div>
+
+    <div class="draw-bar" id="draw-bar" hidden>
+      <p class="draw-msg" id="draw-msg" role="status" aria-live="polite"></p>
+      <div class="draw-actions">
+        <button id="draw-undo" class="btn" type="button">Undo</button>
+        <button id="draw-cancel" class="btn" type="button">Cancel</button>
+        <button id="draw-start" class="btn primary" type="button">Start</button>
+      </div>
+    </div>
+
+    <div class="canvas-wrap" id="canvas-wrap">
+      <canvas id="map" aria-label="Map with robot, visible region and shadows"></canvas>
+    </div>
+
+    <p class="path-info" id="path-info"></p>
+
+    <ul class="legend" aria-label="Legend">
+      <li><span class="sw sw-visible"></span>visible region</li>
+      <li><span class="sw sw-shadow"></span>shadow (colour per label; label &middot; bounds)</li>
+      <li><span class="sw sw-wall"></span>wall / outside</li>
+      <li><span class="dot dot-robot"></span>robot and patrol path</li>
+      <li><span class="dot dot-target"></span>visible target</li>
+      <li><span class="dot dot-hidden"></span>hidden target (ground truth)</li>
+    </ul>
+
+    <form class="settings" id="settings" aria-label="Settings" onsubmit="return false">
+      <label>Targets
+        <input id="opt-n" type="number" min="1" max="40" step="1" value="10" inputmode="numeric">
+      </label>
+      <label>Seed
+        <input id="opt-seed" type="number" min="1" max="99999" step="1" value="1" inputmode="numeric">
+      </label>
+      <label>Initial knowledge
+        <select id="opt-mode">
+          <option value="exact">Exact counts</option>
+          <option value="unknown">Unknown counts [0, &infin;)</option>
+          <option value="evader">Single evader (N = 1)</option>
+        </select>
+      </label>
+      <label>Sensing range
+        <select id="opt-radius">
+          <option value="">Unlimited</option>
+          <option value="16">16 cells</option>
+          <option value="12">12 cells</option>
+          <option value="8">8 cells</option>
+        </select>
+      </label>
+      <label class="switch">
+        <input id="opt-gt" type="checkbox" checked>
+        <span class="track" aria-hidden="true"></span>
+        Show ground truth
+      </label>
+    </form>
+  </section>
+
+  <aside class="panel" aria-label="Filter state">
+    <div class="warning" id="warning" role="alert" hidden></div>
+
+    <section class="card">
+      <h2>Shadows</h2>
+      <div class="table-wrap">
+        <table class="shadows">
+          <thead>
+            <tr><th>shadow</th><th class="col-true">true</th><th>bounds</th><th title="Expected count from the probabilistic filter">E[n]</th></tr>
+          </thead>
+          <tbody id="shadow-rows"></tbody>
+        </table>
+      </div>
+      <p class="aggregate" id="aggregate"></p>
+      <p class="note" id="notes"></p>
+    </section>
+
+    <section class="card">
+      <h2>Bipartite I-state</h2>
+      <p class="note">Left: shadows at t<sub>0</sub> and appeared shadows. Right: disappeared and current shadows.
+        An edge means targets of the left vertex may now be in the right vertex. FOV crossings are pooled into &plusmn; nodes.
+        When the graph grows large it is re-rooted at the current shadows, which then replace t<sub>0</sub> (tagged &ldquo;root&rdquo;).</p>
+      <div class="graph-wrap"><svg id="graph" role="img" aria-label="Bipartite information state"></svg></div>
+    </section>
+
+    <section class="card">
+      <h2>Event log</h2>
+      <ol class="log" id="log" aria-live="off"></ol>
+    </section>
+  </aside>
+</main>
+
+<footer class="foot">
+  <span>Keyboard: <kbd>space</kbd> play/pause &middot; <kbd>&rarr;</kbd> step &middot; drawing: <kbd>Enter</kbd> start, <kbd>Esc</kbd> cancel</span>
+  <span>Static page, no dependencies &middot; filter code shared with the Node tests</span>
+</footer>
+
+<script src="js/rng.js"></script>
+<script src="js/events.js"></script>
+<script src="js/maxflow.js"></script>
+<script src="js/bipartite.js"></script>
+<script src="js/filter.js"></script>
+<script src="js/probabilistic.js"></script>
+<script src="js/grid.js"></script>
+<script src="js/map_office.js"></script>
+<script src="js/maps_polygon.js"></script>
+<script src="js/polygon.js"></script>
+<script src="js/polygon_sim.js"></script>
+<script src="js/controller.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

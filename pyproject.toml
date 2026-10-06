@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shadowinfo"
+version = "0.1.0"
+description = "Combinatorial and Bayesian filters over shadow information spaces (Yu & LaValle, T-RO 2012)"
+readme = "README.md"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+authors = [{ name = "Jingjin Yu" }]
+dependencies = ["numpy>=1.21", "scipy>=1.7"]
+
+[project.optional-dependencies]
+plot = ["matplotlib>=3.5"]
+dev = ["pytest>=7", "matplotlib>=3.5", "networkx>=2.6"]
+
+[tool.setuptools.packages.find]
+include = ["shadowinfo*"]
+
+[tool.setuptools.package-data]
+"shadowinfo.grid" = ["maps/*.txt", "maps/*.json"]
+"shadowinfo.polygon" = ["data/*.dat", "data/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: long-running parity tests (run by default; deselect with -m 'not slow')"]

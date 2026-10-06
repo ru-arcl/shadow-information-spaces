@@ -1,0 +1,38 @@
+{
+ "generator":"tools/java_reference/src/GoldenDump.java",
+ "java_version":"17.0.20.1",
+ "java_vm":"OpenJDK 64-Bit Server VM 17.0.20.1+1",
+ "epsilon":5.0E-5,
+ "purturb":0.005,
+ "seeds_original":[1,2,3,4,5],
+ "seeds_merge_fixed":[1,2,3],
+ "burnins":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
+ "java_random_check":{
+  "seed":1,
+  "math_random_after_seeding":[0.7308781907032909,0.41008081149220166,0.20771484130971707,0.3327170559595112,0.9677559094241207,0.006117182265761301],
+  "equals_new_Random_seed_nextDouble":true,
+  "new_Random_42_int_nextDouble_x100":[72,68,30,27,66,90]
+ },
+ "polygon_files":["poly1.json","poly2.json","poly3.json","poly4.json","poly5.json","poly6.json","poly7.json","poly8.json","poly9.json","poly10.json","poly11.json","poly12.json","poly13.json","poly14.json"],
+ "runs":[
+  {"file":"12_PP.json","name":"PP","polygon":12,"source":"ProjectPanel.java, active ('polygon 12'); runs getGaps+oracle(100)+equations+BG+bounds","get_gaps_ok":true},
+  {"file":"1_PP2.json","name":"PP2","polygon":1,"source":"ProjectPanel2.java, active (polygon 1); runs getGaps+NSE","get_gaps_ok":true},
+  {"file":"5_PP3.json","name":"PP3","polygon":5,"source":"ProjectPanel3.java, active ('polygon 5'); runs getGaps+NSE","get_gaps_ok":true},
+  {"file":"14_PP4.json","name":"PP4","polygon":14,"source":"ProjectPanel4.java, active (drawing only; panel never calls getGaps)","get_gaps_ok":false},
+  {"file":"14_PP5.json","name":"PP5","polygon":14,"source":"ProjectPanel5.java, active; runs getGaps+oracle(1000000)+equations+BG+bounds","get_gaps_ok":true},
+  {"file":"1_c_stub.json","name":"c_stub","polygon":1,"source":"commented '// polygon 1' block in ProjectPanel/2/3","get_gaps_ok":true},
+  {"file":"13_c_first.json","name":"c_first","polygon":13,"source":"commented '// polygon 13' block in ProjectPanel.java, first piece only (= T-RO Fig. 15a path)","get_gaps_ok":true},
+  {"file":"13_c_second.json","name":"c_second","polygon":13,"source":"commented '// polygon 13' block incl. '// Second piece of the path' (leaves 13.dat)","get_gaps_ok":false},
+  {"file":"13_c_tail.json","name":"c_tail","polygon":13,"source":"as c_second plus the doubly-commented tail (490,858),(675,876)","get_gaps_ok":false},
+  {"file":"5_c_stub.json","name":"c_stub","polygon":5,"source":"commented '// polygon 5' block in ProjectPanel/2 (sub-path of PP3)","get_gaps_ok":true},
+  {"file":"1_c_long.json","name":"c_long","polygon":1,"source":"commented long polygon-1 path in ProjectPanel/2/3","get_gaps_ok":true},
+  {"file":"12_fig_ICRA08-Fig2a.json","name":"fig_ICRA08-Fig2a","polygon":12,"source":"digitised from paper figure ICRA08-Fig2a (ydown figure; coordinates in .dat frame); see docs/notes/original_maps.md","get_gaps_ok":true},
+  {"file":"12_fig_ICRA08-Fig3a.json","name":"fig_ICRA08-Fig3a","polygon":12,"source":"digitised from paper figure ICRA08-Fig3a (ydown figure; coordinates in .dat frame); see docs/notes/original_maps.md","get_gaps_ok":true},
+  {"file":"12_fig_TRO-Fig11a.json","name":"fig_TRO-Fig11a","polygon":12,"source":"digitised from paper figure TRO-Fig11a (ydown figure; coordinates in .dat frame); see docs/notes/original_maps.md","get_gaps_ok":true},
+  {"file":"13_fig_ICRA08-Fig8a.json","name":"fig_ICRA08-Fig8a","polygon":13,"source":"digitised from paper figure ICRA08-Fig8a (yup figure; coordinates in .dat frame); see docs/notes/original_maps.md","get_gaps_ok":true},
+  {"file":"13_fig_TRO-Fig15a.json","name":"fig_TRO-Fig15a","polygon":13,"source":"digitised from paper figure TRO-Fig15a (yup figure; coordinates in .dat frame); see docs/notes/original_maps.md","get_gaps_ok":true},
+  {"file":"14_fig_ICRA08-Fig8b.json","name":"fig_ICRA08-Fig8b","polygon":14,"source":"digitised from paper figure ICRA08-Fig8b (ydown figure; coordinates in .dat frame); see docs/notes/original_maps.md","get_gaps_ok":false},
+  {"file":"14_fig_TRO-Fig15b.json","name":"fig_TRO-Fig15b","polygon":14,"source":"digitised from paper figure TRO-Fig15b (ydown figure; coordinates in .dat frame); see docs/notes/original_maps.md","get_gaps_ok":true}
+ ],
+ "non_round_trip_doubles":0
+}

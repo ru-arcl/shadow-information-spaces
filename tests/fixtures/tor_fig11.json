@@ -1,0 +1,116 @@
+{
+  "source": "Yu & LaValle, Shadow Information Spaces, IEEE T-RO 28(2) 2012, Sec. V-C, Fig. 11(b)-(d), p. 448-449",
+  "sequence": {
+    "initial": {
+      "1": [2, 4],
+      "2": [0, 3],
+      "3": [5, 5],
+      "4": [2, 6],
+      "5": [4, 5]
+    },
+    "events": [
+      {"type": "split", "s": 1, "a": 6, "b": 7},
+      {"type": "split", "s": 7, "a": 9, "b": 8},
+      {"type": "appear", "s": 10, "lo": 1, "hi": 3},
+      {"type": "merge", "a": 4, "b": 10, "s": 11},
+      {"type": "appear", "s": 12, "lo": 3, "hi": 8},
+      {"type": "split", "s": 3, "a": 13, "b": 14},
+      {"type": "disappear", "s": 9, "lo": 2, "hi": 3},
+      {"type": "merge", "a": 2, "b": 6, "s": 15},
+      {"type": "merge", "a": 11, "b": 5, "s": 16},
+      {"type": "disappear", "s": 14, "lo": 2, "hi": 4},
+      {"type": "merge", "a": 8, "b": 16, "s": 17},
+      {"type": "appear", "s": 18, "lo": 5, "hi": 7},
+      {"type": "merge", "a": 17, "b": 12, "s": 19}
+    ]
+  },
+  "bipartite": {
+    "left": [1, 2, 3, 4, 5, 10, 12, 18],
+    "right": [9, 13, 14, 15, 18, 19],
+    "edges": [
+      [1, 9],
+      [1, 15],
+      [1, 19],
+      [2, 15],
+      [3, 13],
+      [3, 14],
+      [4, 19],
+      [5, 19],
+      [10, 19],
+      [12, 19],
+      [18, 18]
+    ]
+  },
+  "query": [19],
+  "paper_upper": 24,
+  "paper_lower": 10,
+  "lp_upper": 24,
+  "lp_lower": 10,
+  "lp_all_bounds": {
+    "13": [1, 3],
+    "15": [0, 5],
+    "18": [5, 7],
+    "19": [10, 24]
+  },
+  "paper_witness_upper": {
+    "f(9,T)": 2,
+    "f(14,T)": 2,
+    "f(13,T)": 0,
+    "f(15,T)": 0,
+    "f(18,T)": 7,
+    "f(19,T)": 24
+  },
+  "paper_witness_lower": {
+    "f(9,T)": 1,
+    "f(14,T)": 1,
+    "f(15,T)": 1,
+    "f(13,T)": 4,
+    "f(18,T)": 5
+  },
+  "semantic_witness_upper": {
+    "supply": {
+      "1": 4,
+      "2": 0,
+      "3": 5,
+      "4": 6,
+      "5": 5,
+      "10": 3,
+      "12": 8,
+      "18": 5
+    },
+    "flow": [
+      [1, 9, 2],
+      [1, 19, 2],
+      [3, 14, 2],
+      [3, 13, 3],
+      [4, 19, 6],
+      [5, 19, 5],
+      [10, 19, 3],
+      [12, 19, 8],
+      [18, 18, 5]
+    ]
+  },
+  "semantic_witness_lower": {
+    "supply": {
+      "1": 2,
+      "2": 0,
+      "3": 5,
+      "4": 2,
+      "5": 4,
+      "10": 1,
+      "12": 3,
+      "18": 5
+    },
+    "flow": [
+      [1, 9, 2],
+      [3, 14, 2],
+      [3, 13, 3],
+      [4, 19, 2],
+      [5, 19, 4],
+      [10, 19, 1],
+      [12, 19, 3],
+      [18, 18, 5]
+    ]
+  },
+  "notes": "Fig. 11(b) read from the embedded 400x439 raster (native resolution): s1 splits into s6,s7; s7 splits into s9,s8; s9 disappears; s2+s6 merge into s15; s4+s10(appear) merge into s11; s11+s5 merge into s16; s8+s16 merge into s17; s17+s12(appear) merge into s19; s3 splits into s13,s14; s14 disappears; s18 appears and survives to tf. Initial shadows 1-5, appearing 10,12,18, disappearing 9,14, final 13,15,18,19. Event order follows the vertical position in Fig. 11(b) except that appear(18) is placed before the merge creating s19 to keep labels increasing; the order does not affect the bipartite graph. The bipartite graph produced by this sequence matches Fig. 11(c) and the inner edges of Fig. 11(d) exactly (11 edges). Disappear events carry the paper's ranges (9:[2,3], 14:[2,4]) rather than exact counts. Verification: the LP over flows with supply l_i<=x_i<=u_i on every left vertex and l_j<=y_j<=u_j on every disappeared shadow gives s19 in [10,24], equal to the paper's numbers, so (a) and (b) coincide here. The paper's literal recipe (Eqs. 7, 8, c(i,T)=l_i for disappearing shadows in both computations) also returns 24 and 10. The quoted witnesses are max-flows of the recipe networks, not semantically feasible distributions: the lower-bound witness (f(9,T)=f(14,T)=1<l=2, total 12) is an alternative max-flow of value 12 and Eq. 8 only uses the total; the upper-bound witness has f(18,T)=7 although the text sets c(18,T)=0 (inconsistent; valid if c(18,T)=inf; harmless because 18 is not disappearing). In general the literal lower-bound recipe is NOT exact: on random bipartite instances it disagrees with the LP in ~54% of feasible cases; using c(i,T)=u_i (not l_i) for disappearing shadows in the lower-bound computation makes it agree with the LP on all tested cases. The upper-bound recipe agreed on all feasible random instances tested."
+}

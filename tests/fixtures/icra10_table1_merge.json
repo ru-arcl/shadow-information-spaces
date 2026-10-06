@@ -1,0 +1,83 @@
+{
+ "source": "Yu & LaValle, ICRA 2010, Sec. III-B.4 Table I, p. 3546 (identical to T-RO 2012 Table I)",
+ "prob_sequence": {
+  "labels": [
+   1,
+   2,
+   3
+  ],
+  "joint": [
+   [
+    [
+     1,
+     1,
+     4
+    ],
+    0.2
+   ],
+   [
+    [
+     1,
+     2,
+     3
+    ],
+    0.2
+   ],
+   [
+    [
+     1,
+     3,
+     2
+    ],
+    0.2
+   ],
+   [
+    [
+     2,
+     1,
+     3
+    ],
+    0.2
+   ],
+   [
+    [
+     2,
+     2,
+     2
+    ],
+    0.2
+   ]
+  ],
+  "events": [
+   {
+    "type": "merge",
+    "a": 2,
+    "b": 3,
+    "s": 4
+   }
+  ]
+ },
+ "expected_final": {
+  "labels": [
+   1,
+   4
+  ],
+  "joint": [
+   [
+    [
+     1,
+     5
+    ],
+    0.6
+   ],
+   [
+    [
+     2,
+     4
+    ],
+    0.4
+   ]
+  ]
+ },
+ "notes": "joint entries are [values in 'labels' order, probability]."
+}

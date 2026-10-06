@@ -1,0 +1,362 @@
+{
+ "source": "Yu & LaValle, ICRA 2010, Sec. IV Fig. 4 and Tables III-IV (worked numbers in T-RO 2012 Table III / Fig. 12-13)",
+ "prob_sequence": {
+  "labels": [
+   1,
+   2
+  ],
+  "joint": [
+   [
+    [
+     2,
+     2
+    ],
+    1.0
+   ]
+  ],
+  "events": [
+   {
+    "type": "fov",
+    "s": 1,
+    "y": "exit"
+   },
+   {
+    "type": "split",
+    "s": 2,
+    "a": 3,
+    "b": 4
+   },
+   {
+    "type": "fov",
+    "s": 3,
+    "y": "enter"
+   },
+   {
+    "type": "merge",
+    "a": 1,
+    "b": 3,
+    "s": 5
+   },
+   {
+    "type": "disappear",
+    "s": 5,
+    "dist": {
+     "1": 0.5,
+     "2": 0.5
+    }
+   }
+  ]
+ },
+ "split_rule": {
+  "type": "binomial",
+  "p": 0.5
+ },
+ "obs_model": {
+  "enter": {
+   "enter": 0.9,
+   "exit": 0.1,
+   "null": 0.0
+  },
+  "exit": {
+   "enter": 0.1,
+   "exit": 0.9,
+   "null": 0.0
+  },
+  "null": {
+   "enter": 0.0,
+   "exit": 0.0,
+   "null": 1.0
+  }
+ },
+ "obs_model_meaning": "P(event | observation): obs_model[y][e]",
+ "zero_exit_rule": "renormalize_within_entry",
+ "steps": [
+  {
+   "after_event": 0,
+   "labels": [
+    1,
+    2
+   ],
+   "joint": [
+    [
+     [
+      1,
+      2
+     ],
+     0.9
+    ],
+    [
+     [
+      3,
+      2
+     ],
+     0.1
+    ]
+   ]
+  },
+  {
+   "after_event": 1,
+   "labels": [
+    1,
+    3,
+    4
+   ],
+   "joint": [
+    [
+     [
+      1,
+      0,
+      2
+     ],
+     0.225
+    ],
+    [
+     [
+      1,
+      1,
+      1
+     ],
+     0.45
+    ],
+    [
+     [
+      1,
+      2,
+      0
+     ],
+     0.225
+    ],
+    [
+     [
+      3,
+      0,
+      2
+     ],
+     0.025
+    ],
+    [
+     [
+      3,
+      1,
+      1
+     ],
+     0.05
+    ],
+    [
+     [
+      3,
+      2,
+      0
+     ],
+     0.025
+    ]
+   ]
+  },
+  {
+   "after_event": 2,
+   "labels": [
+    1,
+    3,
+    4
+   ],
+   "joint": [
+    [
+     [
+      1,
+      0,
+      1
+     ],
+     0.045
+    ],
+    [
+     [
+      1,
+      1,
+      0
+     ],
+     0.0225
+    ],
+    [
+     [
+      1,
+      1,
+      2
+     ],
+     0.225
+    ],
+    [
+     [
+      1,
+      2,
+      1
+     ],
+     0.405
+    ],
+    [
+     [
+      1,
+      3,
+      0
+     ],
+     0.2025
+    ],
+    [
+     [
+      3,
+      0,
+      1
+     ],
+     0.005
+    ],
+    [
+     [
+      3,
+      1,
+      0
+     ],
+     0.0025
+    ],
+    [
+     [
+      3,
+      1,
+      2
+     ],
+     0.025
+    ],
+    [
+     [
+      3,
+      2,
+      1
+     ],
+     0.045
+    ],
+    [
+     [
+      3,
+      3,
+      0
+     ],
+     0.0225
+    ]
+   ]
+  },
+  {
+   "after_event": 3,
+   "labels": [
+    4,
+    5
+   ],
+   "joint": [
+    [
+     [
+      0,
+      2
+     ],
+     0.0225
+    ],
+    [
+     [
+      0,
+      4
+     ],
+     0.205
+    ],
+    [
+     [
+      0,
+      6
+     ],
+     0.0225
+    ],
+    [
+     [
+      1,
+      1
+     ],
+     0.045
+    ],
+    [
+     [
+      1,
+      3
+     ],
+     0.41
+    ],
+    [
+     [
+      1,
+      5
+     ],
+     0.045
+    ],
+    [
+     [
+      2,
+      2
+     ],
+     0.225
+    ],
+    [
+     [
+      2,
+      4
+     ],
+     0.025
+    ]
+   ]
+  },
+  {
+   "after_event": 4,
+   "labels": [
+    4
+   ],
+   "joint": [
+    [
+     [
+      0
+     ],
+     0.0769230769
+    ],
+    [
+     [
+      1
+     ],
+     0.1538461538
+    ],
+    [
+     [
+      2
+     ],
+     0.7692307692
+    ]
+   ]
+  }
+ ],
+ "expected_final_marginal": {
+  "s": 4,
+  "p": {
+   "0": 0.0769230769,
+   "1": 0.1538461538,
+   "2": 0.7692307692
+  }
+ },
+ "paper_exact_final": {
+  "0": 0.0769,
+  "1": 0.1538,
+  "2": 0.7692
+ },
+ "paper_monte_carlo_1000": {
+  "0": 0.079,
+  "1": 0.154,
+  "2": 0.767
+ },
+ "alternative_global_renormalization_final": {
+  "0": 0.0833333333,
+  "1": 0.1666666667,
+  "2": 0.75
+ },
+ "notes": "Event order read from ICRA10 Fig. 4 (bold observations only): y_x on s1, split s2->s3,s4, y_e on s3, merge s1+s3->s5, s5 disappears revealing 1 or 2 agents with probability 0.5 each (the disappear update multiplies by P(s5=x) and renormalises). 'no null event, true positive rate 0.9' is encoded as obs_model. ICRA10 Table IV / T-RO Algorithm 2: when x_i=0 an exit is impossible and the enter/null pieces of THAT ENTRY are rescaled to sum to the entry's mass p_j (no mass leaves the entry). This reproduces every row of T-RO Table III. Dropping the impossible mass and renormalising globally gives alternative_global_renormalization_final (0.0833/0.1667/0.75) instead, which does NOT match the paper. The 'slightly more complicated' variant (bold+lightened observations, 5 agents per shadow, '135 entries') is reproduced when both y_e observations on s4 precede the merge: see tor_fig12_complex.json and docs/notes/probabilistic_extraction.md section 6.",
+ "monte_carlo_semantics": "A rejection-sampling Monte Carlo that samples e ~ P(e|y) and DISCARDS a trial when it samples an exit from an empty shadow converges to alternative_global_renormalization_final (400k trials: 0.0838/0.1671/0.7491). A Monte Carlo that instead resamples among enter/null in that case converges to expected_final_marginal (400k trials: 0.0774/0.1543/0.7684). The paper's 1000-trial numbers (0.079/0.154/0.767) are within 2 standard errors of both, so a Monte Carlo baseline used to test the exact filter must use the second (per-entry) rule."
+}

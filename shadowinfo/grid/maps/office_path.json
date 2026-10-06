@@ -1,0 +1,23 @@
+{
+  "description": "Robot patrol for office.txt: west and south corridors, room (27-34, 15-26), east hall with pillars, room (1-8, 28-40), meeting room. Axis-aligned [row, col] waypoints, looped.",
+  "loop": true,
+  "waypoints": [
+    [11, 13],
+    [11, 2],
+    [24, 2],
+    [24, 22],
+    [31, 22],
+    [24, 22],
+    [24, 44],
+    [31, 44],
+    [31, 52],
+    [4, 52],
+    [4, 44],
+    [11, 44],
+    [11, 32],
+    [5, 32],
+    [11, 32],
+    [11, 13],
+    [19, 13]
+  ]
+}

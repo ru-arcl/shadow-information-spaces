@@ -1,0 +1,217 @@
+{
+ "source": "Yu & LaValle, Tracking Hidden Agents Through Shadow Information Spaces, ICRA 2008, Sec. IV Fig. 4 (shadow-sequence I-state) and Sec. V-A Fig. 7(a) (bipartite I-state), pp. 2334-2335",
+ "sequence": {
+  "initial": {
+   "1": [
+    2,
+    4
+   ],
+   "2": [
+    0,
+    3
+   ],
+   "3": [
+    5,
+    5
+   ],
+   "4": [
+    2,
+    6
+   ],
+   "5": [
+    4,
+    5
+   ]
+  },
+  "events": [
+   {
+    "type": "split",
+    "s": 1,
+    "a": 7,
+    "b": 6
+   },
+   {
+    "type": "split",
+    "s": 6,
+    "a": 9,
+    "b": 8
+   },
+   {
+    "type": "appear",
+    "s": 10,
+    "lo": 1,
+    "hi": 3
+   },
+   {
+    "type": "merge",
+    "a": 4,
+    "b": 10,
+    "s": 11
+   },
+   {
+    "type": "appear",
+    "s": 12,
+    "lo": 3,
+    "hi": 8
+   },
+   {
+    "type": "split",
+    "s": 3,
+    "a": 13,
+    "b": 14
+   },
+   {
+    "type": "disappear",
+    "s": 9,
+    "lo": 2,
+    "hi": 3
+   },
+   {
+    "type": "disappear",
+    "s": 14,
+    "lo": 2,
+    "hi": 4
+   },
+   {
+    "type": "merge",
+    "a": 2,
+    "b": 7,
+    "s": 15
+   },
+   {
+    "type": "merge",
+    "a": 11,
+    "b": 5,
+    "s": 16
+   },
+   {
+    "type": "appear",
+    "s": 18,
+    "lo": 5,
+    "hi": 7
+   },
+   {
+    "type": "merge",
+    "a": 8,
+    "b": 16,
+    "s": 17
+   },
+   {
+    "type": "merge",
+    "a": 17,
+    "b": 12,
+    "s": 19
+   }
+  ]
+ },
+ "bipartite": {
+  "left": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   10,
+   12,
+   18
+  ],
+  "right": [
+   9,
+   13,
+   14,
+   15,
+   18,
+   19
+  ],
+  "edges": [
+   [
+    1,
+    9
+   ],
+   [
+    1,
+    15
+   ],
+   [
+    1,
+    19
+   ],
+   [
+    2,
+    15
+   ],
+   [
+    3,
+    13
+   ],
+   [
+    3,
+    14
+   ],
+   [
+    4,
+    19
+   ],
+   [
+    5,
+    19
+   ],
+   [
+    10,
+    19
+   ],
+   [
+    12,
+    19
+   ],
+   [
+    18,
+    18
+   ]
+  ]
+ },
+ "ilp_split_merge_rows_quoted_in_text": [
+  [
+   6,
+   8,
+   9
+  ],
+  [
+   11,
+   4,
+   10
+  ]
+ ],
+ "query": [
+  19
+ ],
+ "expected_bounds": {
+  "13": [
+   1,
+   3
+  ],
+  "15": [
+   0,
+   5
+  ],
+  "18": [
+   5,
+   7
+  ],
+  "19": [
+   10,
+   24
+  ]
+ },
+ "expected_bounds_sets": {
+  "13+15": [
+   1,
+   8
+  ],
+  "all_final": [
+   16,
+   37
+  ]
+ },
+ "notes": "Same shadow sequence as T-RO Fig. 11(b) (tests/fixtures/tor_fig11.json) except that the children of s1 are named the other way round: ICRA08 has split 1->7,6, split 6->9,8 and merge 2+7->15, T-RO has split 1->6,7, split 7->9,8 and merge 2+6->15. The bipartite graph (Fig. 7(a)) is identical to T-RO Fig. 11(c). ICRA08 gives no numeric bounds; the T-RO Sec. V-C numbers are reused (1:(2,4) 2:(0,3) 3:(5,5) 4:(2,6) 5:(4,5) 9:(2,3) 10:(1,3) 12:(3,8) 14:(2,4) 18:(5,7)), so s19 must again be [10,24]. ICRA08 Fig. 4 labels the box under s9 'v14' (typo for v9). The text quotes the ILP rows x6=x8+x9 and x11=x4+x10 (listed as [s,a,b]). expected_* computed with an independent integer program (scipy milp); hi=null means +inf."
+}

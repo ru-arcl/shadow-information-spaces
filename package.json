@@ -1,0 +1,10 @@
+{
+  "name": "shadow-information-spaces-demo",
+  "private": true,
+  "license": "BSD-3-Clause",
+  "description": "JS port and demo of Shadow Information Spaces (no runtime dependencies)",
+  "scripts": {
+    "test": "node --test js-tests/*.test.js",
+    "serve": "python3 -m http.server -d docs"
+  }
+}

@@ -1,0 +1,680 @@
+{
+ "source": "Yu & LaValle, Tracking Hidden Agents Through Shadow Information Spaces, ICRA 2008, Sec. VI (refining initial bounds, counting, pursuit-evasion), p. 2336-2337, on the Fig. 4 shadow sequence",
+ "cases": [
+  {
+   "name": "refine_lower_bound",
+   "sequence": {
+    "initial": {
+     "1": [
+      4,
+      8
+     ],
+     "2": [
+      0,
+      3
+     ],
+     "3": [
+      5,
+      5
+     ],
+     "4": [
+      2,
+      6
+     ],
+     "5": [
+      4,
+      5
+     ]
+    },
+    "events": [
+     {
+      "type": "split",
+      "s": 1,
+      "a": 7,
+      "b": 6
+     },
+     {
+      "type": "split",
+      "s": 6,
+      "a": 9,
+      "b": 8
+     },
+     {
+      "type": "appear",
+      "s": 10,
+      "lo": 1,
+      "hi": 3
+     },
+     {
+      "type": "merge",
+      "a": 4,
+      "b": 10,
+      "s": 11
+     },
+     {
+      "type": "appear",
+      "s": 12,
+      "lo": 3,
+      "hi": 8
+     },
+     {
+      "type": "split",
+      "s": 3,
+      "a": 13,
+      "b": 14
+     },
+     {
+      "type": "disappear",
+      "s": 9,
+      "lo": 6,
+      "hi": 6
+     },
+     {
+      "type": "disappear",
+      "s": 14,
+      "lo": 2,
+      "hi": 4
+     },
+     {
+      "type": "merge",
+      "a": 2,
+      "b": 7,
+      "s": 15
+     },
+     {
+      "type": "merge",
+      "a": 11,
+      "b": 5,
+      "s": 16
+     },
+     {
+      "type": "appear",
+      "s": 18,
+      "lo": 5,
+      "hi": 7
+     },
+     {
+      "type": "merge",
+      "a": 8,
+      "b": 16,
+      "s": 17
+     },
+     {
+      "type": "merge",
+      "a": 17,
+      "b": 12,
+      "s": 19
+     }
+    ]
+   },
+   "total": null,
+   "expected_final_bounds": {
+    "13": [
+     1,
+     3
+    ],
+    "15": [
+     0,
+     5
+    ],
+    "18": [
+     5,
+     7
+    ],
+    "19": [
+     10,
+     24
+    ]
+   },
+   "expected_refined_initial": {
+    "1": [
+     6,
+     8
+    ],
+    "2": [
+     0,
+     3
+    ],
+    "3": [
+     5,
+     5
+    ],
+    "4": [
+     2,
+     6
+    ],
+    "5": [
+     4,
+     5
+    ]
+   },
+   "expected_refined_appear": {
+    "10": [
+     1,
+     3
+    ],
+    "12": [
+     3,
+     8
+    ],
+    "18": [
+     5,
+     7
+    ]
+   },
+   "expected_initial_total": [
+    17,
+    27
+   ],
+   "notes": "ICRA08 Sec. VI 'Refining initial bounds': s1 has initial lower bound 4 but s9 (a descendant of s1 only) later disappears revealing 6 agents, so s1 must have held at least 6. Upper bound 8 on s1 is unchanged."
+  },
+  {
+   "name": "counting",
+   "sequence": {
+    "initial": {
+     "1": [
+      0,
+      null
+     ],
+     "2": [
+      0,
+      null
+     ],
+     "3": [
+      0,
+      null
+     ],
+     "4": [
+      0,
+      null
+     ],
+     "5": [
+      0,
+      null
+     ]
+    },
+    "events": [
+     {
+      "type": "split",
+      "s": 1,
+      "a": 7,
+      "b": 6
+     },
+     {
+      "type": "split",
+      "s": 6,
+      "a": 9,
+      "b": 8
+     },
+     {
+      "type": "appear",
+      "s": 10,
+      "lo": 2,
+      "hi": 2
+     },
+     {
+      "type": "merge",
+      "a": 4,
+      "b": 10,
+      "s": 11
+     },
+     {
+      "type": "appear",
+      "s": 12,
+      "lo": 5,
+      "hi": 5
+     },
+     {
+      "type": "split",
+      "s": 3,
+      "a": 13,
+      "b": 14
+     },
+     {
+      "type": "disappear",
+      "s": 9,
+      "lo": 3,
+      "hi": 3
+     },
+     {
+      "type": "disappear",
+      "s": 14,
+      "lo": 1,
+      "hi": 1
+     },
+     {
+      "type": "merge",
+      "a": 2,
+      "b": 7,
+      "s": 15
+     },
+     {
+      "type": "merge",
+      "a": 11,
+      "b": 5,
+      "s": 16
+     },
+     {
+      "type": "appear",
+      "s": 18,
+      "lo": 6,
+      "hi": 6
+     },
+     {
+      "type": "merge",
+      "a": 8,
+      "b": 16,
+      "s": 17
+     },
+     {
+      "type": "merge",
+      "a": 17,
+      "b": 12,
+      "s": 19
+     }
+    ]
+   },
+   "total": null,
+   "expected_final_bounds": {
+    "13": [
+     0,
+     null
+    ],
+    "15": [
+     0,
+     null
+    ],
+    "18": [
+     6,
+     6
+    ],
+    "19": [
+     7,
+     null
+    ]
+   },
+   "expected_refined_initial": {
+    "1": [
+     3,
+     null
+    ],
+    "2": [
+     0,
+     null
+    ],
+    "3": [
+     1,
+     null
+    ],
+    "4": [
+     0,
+     null
+    ],
+    "5": [
+     0,
+     null
+    ]
+   },
+   "expected_refined_appear": {
+    "10": [
+     2,
+     2
+    ],
+    "12": [
+     5,
+     5
+    ],
+    "18": [
+     6,
+     6
+    ]
+   },
+   "expected_initial_total": [
+    4,
+    null
+   ],
+   "notes": "ICRA08 Sec. VI 'Counting': all initial shadows [0,inf). Disappearing shadows reveal 3 (s9) and 1 (s14), so s1>=3 and s3>=1 and n_initial>=4; upper bounds stay infinite because unexplored shadows remain. Numbers invented for the test (the paper gives none)."
+  },
+  {
+   "name": "pursuit_evasion_not_found",
+   "sequence": {
+    "initial": {
+     "1": [
+      0,
+      1
+     ],
+     "2": [
+      0,
+      1
+     ],
+     "3": [
+      0,
+      1
+     ],
+     "4": [
+      0,
+      1
+     ],
+     "5": [
+      0,
+      1
+     ]
+    },
+    "events": [
+     {
+      "type": "split",
+      "s": 1,
+      "a": 7,
+      "b": 6
+     },
+     {
+      "type": "split",
+      "s": 6,
+      "a": 9,
+      "b": 8
+     },
+     {
+      "type": "appear",
+      "s": 10,
+      "lo": 0,
+      "hi": 0
+     },
+     {
+      "type": "merge",
+      "a": 4,
+      "b": 10,
+      "s": 11
+     },
+     {
+      "type": "appear",
+      "s": 12,
+      "lo": 0,
+      "hi": 0
+     },
+     {
+      "type": "split",
+      "s": 3,
+      "a": 13,
+      "b": 14
+     },
+     {
+      "type": "disappear",
+      "s": 9,
+      "lo": 0,
+      "hi": 0
+     },
+     {
+      "type": "disappear",
+      "s": 14,
+      "lo": 0,
+      "hi": 0
+     },
+     {
+      "type": "merge",
+      "a": 2,
+      "b": 7,
+      "s": 15
+     },
+     {
+      "type": "merge",
+      "a": 11,
+      "b": 5,
+      "s": 16
+     },
+     {
+      "type": "appear",
+      "s": 18,
+      "lo": 0,
+      "hi": 0
+     },
+     {
+      "type": "merge",
+      "a": 8,
+      "b": 16,
+      "s": 17
+     },
+     {
+      "type": "merge",
+      "a": 17,
+      "b": 12,
+      "s": 19
+     }
+    ]
+   },
+   "total": [
+    1,
+    1
+   ],
+   "expected_final_bounds": {
+    "13": [
+     0,
+     1
+    ],
+    "15": [
+     0,
+     1
+    ],
+    "18": [
+     0,
+     0
+    ],
+    "19": [
+     0,
+     1
+    ]
+   },
+   "expected_refined_initial": {
+    "1": [
+     0,
+     1
+    ],
+    "2": [
+     0,
+     1
+    ],
+    "3": [
+     0,
+     1
+    ],
+    "4": [
+     0,
+     1
+    ],
+    "5": [
+     0,
+     1
+    ]
+   },
+   "expected_refined_appear": {
+    "10": [
+     0,
+     0
+    ],
+    "12": [
+     0,
+     0
+    ],
+    "18": [
+     0,
+     0
+    ]
+   },
+   "expected_initial_total": [
+    1,
+    1
+   ],
+   "notes": "ICRA08 Sec. VI 'Pursuit-evasion': one evader, every initial shadow (0,1), total (1,1); appeared shadows are clear and the two swept shadows are empty. Status: s18 cleared (0,0), others contaminated (0,1)."
+  },
+  {
+   "name": "pursuit_evasion_found",
+   "sequence": {
+    "initial": {
+     "1": [
+      0,
+      1
+     ],
+     "2": [
+      0,
+      1
+     ],
+     "3": [
+      0,
+      1
+     ],
+     "4": [
+      0,
+      1
+     ],
+     "5": [
+      0,
+      1
+     ]
+    },
+    "events": [
+     {
+      "type": "split",
+      "s": 1,
+      "a": 7,
+      "b": 6
+     },
+     {
+      "type": "split",
+      "s": 6,
+      "a": 9,
+      "b": 8
+     },
+     {
+      "type": "appear",
+      "s": 10,
+      "lo": 0,
+      "hi": 0
+     },
+     {
+      "type": "merge",
+      "a": 4,
+      "b": 10,
+      "s": 11
+     },
+     {
+      "type": "appear",
+      "s": 12,
+      "lo": 0,
+      "hi": 0
+     },
+     {
+      "type": "split",
+      "s": 3,
+      "a": 13,
+      "b": 14
+     },
+     {
+      "type": "disappear",
+      "s": 9,
+      "lo": 0,
+      "hi": 0
+     },
+     {
+      "type": "disappear",
+      "s": 14,
+      "lo": 1,
+      "hi": 1
+     },
+     {
+      "type": "merge",
+      "a": 2,
+      "b": 7,
+      "s": 15
+     },
+     {
+      "type": "merge",
+      "a": 11,
+      "b": 5,
+      "s": 16
+     },
+     {
+      "type": "appear",
+      "s": 18,
+      "lo": 0,
+      "hi": 0
+     },
+     {
+      "type": "merge",
+      "a": 8,
+      "b": 16,
+      "s": 17
+     },
+     {
+      "type": "merge",
+      "a": 17,
+      "b": 12,
+      "s": 19
+     }
+    ]
+   },
+   "total": [
+    1,
+    1
+   ],
+   "expected_final_bounds": {
+    "13": [
+     0,
+     0
+    ],
+    "15": [
+     0,
+     0
+    ],
+    "18": [
+     0,
+     0
+    ],
+    "19": [
+     0,
+     0
+    ]
+   },
+   "expected_refined_initial": {
+    "1": [
+     0,
+     0
+    ],
+    "2": [
+     0,
+     0
+    ],
+    "3": [
+     1,
+     1
+    ],
+    "4": [
+     0,
+     0
+    ],
+    "5": [
+     0,
+     0
+    ]
+   },
+   "expected_refined_appear": {
+    "10": [
+     0,
+     0
+    ],
+    "12": [
+     0,
+     0
+    ],
+    "18": [
+     0,
+     0
+    ]
+   },
+   "expected_initial_total": [
+    1,
+    1
+   ],
+   "notes": "Same, but s14 disappears revealing the evader: it was in s3 initially and every final shadow is cleared."
+  }
+ ],
+ "notes": "expected_* computed with an independent integer program (scipy milp); hi=null means +inf; 'total' is the optional bound on the total number of targets (sum over initial and appeared shadows)."
+}

@@ -1,0 +1,405 @@
+{
+ "source": "Yu & LaValle, Probabilistic Shadow Information Spaces, ICRA 2010, Sec. V-C Fig. 5 and Table V, p. 3548-3549; same sequence as T-RO 2012 Fig. 16 / Tables IV-V",
+ "configs": [
+  {
+   "name": "tor_table4",
+   "sequence": {
+    "initial": {
+     "1": [
+      10,
+      10
+     ],
+     "2": [
+      7,
+      7
+     ],
+     "3": [
+      8,
+      8
+     ]
+    },
+    "events": [
+     {
+      "type": "split",
+      "s": 2,
+      "a": 4,
+      "b": 5
+     },
+     {
+      "type": "split",
+      "s": 1,
+      "a": 6,
+      "b": 7
+     },
+     {
+      "type": "split",
+      "s": 7,
+      "a": 8,
+      "b": 9
+     },
+     {
+      "type": "merge",
+      "a": 5,
+      "b": 3,
+      "s": 10
+     },
+     {
+      "type": "appear",
+      "s": 11,
+      "lo": 9,
+      "hi": 9
+     },
+     {
+      "type": "merge",
+      "a": 9,
+      "b": 4,
+      "s": 12
+     },
+     {
+      "type": "split",
+      "s": 8,
+      "a": 13,
+      "b": 14
+     },
+     {
+      "type": "split",
+      "s": 10,
+      "a": 15,
+      "b": 16
+     },
+     {
+      "type": "merge",
+      "a": 11,
+      "b": 6,
+      "s": 17
+     },
+     {
+      "type": "disappear",
+      "s": 13,
+      "lo": 6,
+      "hi": 6
+     },
+     {
+      "type": "merge",
+      "a": 14,
+      "b": 15,
+      "s": 18
+     },
+     {
+      "type": "split",
+      "s": 12,
+      "a": 19,
+      "b": 20
+     },
+     {
+      "type": "disappear",
+      "s": 16,
+      "lo": 9,
+      "hi": 9
+     },
+     {
+      "type": "disappear",
+      "s": 20,
+      "lo": 4,
+      "hi": 4
+     }
+    ]
+   },
+   "bipartite": {
+    "left": [
+     1,
+     2,
+     3,
+     11
+    ],
+    "right": [
+     13,
+     16,
+     17,
+     18,
+     19,
+     20
+    ],
+    "edges": [
+     [
+      1,
+      13
+     ],
+     [
+      1,
+      17
+     ],
+     [
+      1,
+      18
+     ],
+     [
+      1,
+      19
+     ],
+     [
+      1,
+      20
+     ],
+     [
+      2,
+      16
+     ],
+     [
+      2,
+      18
+     ],
+     [
+      2,
+      19
+     ],
+     [
+      2,
+      20
+     ],
+     [
+      3,
+      16
+     ],
+     [
+      3,
+      18
+     ],
+     [
+      11,
+      17
+     ]
+    ]
+   },
+   "expected_bounds_without_fov": {
+    "17": [
+     9,
+     13
+    ],
+    "18": [
+     0,
+     6
+    ],
+    "19": [
+     0,
+     6
+    ]
+   },
+   "paper_expected_counts_s17_s18_s19_with_unknown_fov": {
+    "none, precise": [
+     11.12,
+     5.84,
+     5.6
+    ],
+    "Monte Carlo": [
+     11.16,
+     5.58,
+     5.57
+    ]
+   }
+  },
+  {
+   "name": "icra10_table5_tor_table5",
+   "sequence": {
+    "initial": {
+     "1": [
+      25,
+      25
+     ],
+     "2": [
+      22,
+      22
+     ],
+     "3": [
+      23,
+      23
+     ]
+    },
+    "events": [
+     {
+      "type": "split",
+      "s": 2,
+      "a": 4,
+      "b": 5
+     },
+     {
+      "type": "split",
+      "s": 1,
+      "a": 6,
+      "b": 7
+     },
+     {
+      "type": "split",
+      "s": 7,
+      "a": 8,
+      "b": 9
+     },
+     {
+      "type": "merge",
+      "a": 5,
+      "b": 3,
+      "s": 10
+     },
+     {
+      "type": "appear",
+      "s": 11,
+      "lo": 9,
+      "hi": 9
+     },
+     {
+      "type": "merge",
+      "a": 9,
+      "b": 4,
+      "s": 12
+     },
+     {
+      "type": "split",
+      "s": 8,
+      "a": 13,
+      "b": 14
+     },
+     {
+      "type": "split",
+      "s": 10,
+      "a": 15,
+      "b": 16
+     },
+     {
+      "type": "merge",
+      "a": 11,
+      "b": 6,
+      "s": 17
+     },
+     {
+      "type": "disappear",
+      "s": 13,
+      "lo": 8,
+      "hi": 8
+     },
+     {
+      "type": "merge",
+      "a": 14,
+      "b": 15,
+      "s": 18
+     },
+     {
+      "type": "split",
+      "s": 12,
+      "a": 19,
+      "b": 20
+     },
+     {
+      "type": "disappear",
+      "s": 16,
+      "lo": 15,
+      "hi": 15
+     },
+     {
+      "type": "disappear",
+      "s": 20,
+      "lo": 9,
+      "hi": 9
+     }
+    ]
+   },
+   "bipartite": {
+    "left": [
+     1,
+     2,
+     3,
+     11
+    ],
+    "right": [
+     13,
+     16,
+     17,
+     18,
+     19,
+     20
+    ],
+    "edges": [
+     [
+      1,
+      13
+     ],
+     [
+      1,
+      17
+     ],
+     [
+      1,
+      18
+     ],
+     [
+      1,
+      19
+     ],
+     [
+      1,
+      20
+     ],
+     [
+      2,
+      16
+     ],
+     [
+      2,
+      18
+     ],
+     [
+      2,
+      19
+     ],
+     [
+      2,
+      20
+     ],
+     [
+      3,
+      16
+     ],
+     [
+      3,
+      18
+     ],
+     [
+      11,
+      17
+     ]
+    ]
+   },
+   "expected_bounds_without_fov": {
+    "17": [
+     9,
+     26
+    ],
+    "18": [
+     8,
+     38
+    ],
+    "19": [
+     0,
+     30
+    ]
+   },
+   "paper_expected_counts_s17_s18_s19_with_unknown_fov": {
+    "Monte Carlo": [
+     18.26,
+     22.25,
+     11.85
+    ],
+    "RT-100000": [
+     17.78,
+     21.83,
+     12.34
+    ],
+    "RT-LA-50000 (T-RO only)": [
+     18.24,
+     21.99,
+     12.57
+    ]
+   }
+  }
+ ],
+ "notes": "Component events read from ICRA10 Fig. 5 (14 component events, 20 shadows; the 14->18 / 15->18 merge line hops over the 12->{19,20} line). Event order follows vertical position. The 32 FOV observations of the paper's experiment and its split rule are NOT given in either paper, so the paper's expected counts cannot be reproduced; they are recorded for reference only. expected_bounds_without_fov are nondeterministic bounds for the component events alone (independent integer program), useful as a structural regression test."
+}
